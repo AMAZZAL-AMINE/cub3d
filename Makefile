@@ -3,26 +3,32 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
+#    By: rouali <rouali@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/17 13:32:41 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/08/17 13:55:02 by rouali           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME=cub3D
+NAME = cub3D
 
-SRC= cub3D.c ft_split.c
+GNLN = ./gnln/get_next_line.c ./gnln/get_next_line_utils.c
 
-OBJ= $(SRC:.c=.o)
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+
+SRC = cub3D.c ft_split.c
+
+OBJ = $(SRC:.c=.o)
+
+CC = cc
 
 FLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -o $(NAME) $(OBJ) ./gnln/*.c -lmlx -framework OpenGL -framework AppKit
+	@$(CC) $(FLAGS) $(OBJ) $(GNLN) $(MLX_FLAGS) -o $(NAME)
 	@echo "\033[32m[ ✔ ] cub3D"
 
 clean:
