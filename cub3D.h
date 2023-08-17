@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <mlx.h>
-#include "./gnl/get_next_line.h"
+#include "./gnln/get_next_line.h"
 
 typedef struct t_img
 {
