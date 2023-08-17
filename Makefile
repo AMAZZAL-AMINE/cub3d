@@ -6,7 +6,7 @@
 #    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/17 12:18:00 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/08/17 13:22:34 by mamazzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FLAGS= -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -o $(NAME) $(OBJ) ./gnl/*.c -lmlx -framework OpenGL -framework AppKit
+	@gcc $(FLAGS) -o $(NAME) $(OBJ) ./gnln/*.c -lmlx -framework OpenGL -framework AppKit
 	@echo "\033[32m[ ✔ ] cub3D"
 
 clean:
