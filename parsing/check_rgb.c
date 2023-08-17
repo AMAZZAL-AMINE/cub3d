@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:09:28 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 23:34:48 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/17 23:40:02 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void check_floor(char **floor) {
   }
   count = 0;
   while (floor[1][count]) {
-    if ((floor[1][count + 1] && floor[1][count] == ',' && !ft_isdigit(floor[1][count + 1])) || (floor[1][count] == ',' && !floor[1][count + 1]))
+    if ((floor[1][count + 1] && floor[1][count] == ',' \
+      && !ft_isdigit(floor[1][count + 1])) \
+      || (floor[1][count] == ',' && !floor[1][count + 1]))
         error_map("Error\nMAP : FLOOR TGB");
       count++;
   }
@@ -63,7 +65,8 @@ void check_ceil(char **ceil) {
   }
   count = 0;
   while (ceil[1][count]) {
-    if ((ceil[1][count + 1] && ceil[1][count] == ',' && !ft_isdigit(ceil[1][count + 1])) || (ceil[1][count] == ',' && !ceil[1][count + 1]))
+    if ((ceil[1][count + 1] && ceil[1][count] == ',' \
+      && !ft_isdigit(ceil[1][count + 1])) || (ceil[1][count] == ',' && !ceil[1][count + 1]))
         error_map("Error\nMAP : CEIL TGB");
       count++;
   }
