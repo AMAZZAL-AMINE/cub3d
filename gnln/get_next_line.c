@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 12:00:50 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 11:22:07 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:56:26 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ char	*count_len_tell_newline(char *sql)
 	while (sql[countdest] != '\n' && sql[countdest] != '\0')
 	{
 		dest[countdest] = sql[countdest];
-		countdest++;
-	}
-	if (sql[countdest] == '\n')
-	{
-		dest[countdest] = '\n';
 		countdest++;
 	}
 	dest[countdest] = '\0';

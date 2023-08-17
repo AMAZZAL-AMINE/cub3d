@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 13:32:35 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:56:45 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char **read_map(char *mapfile) {
 	count = 0;
 	fd = open(mapfile, O_RDONLY);
 	line = get_next_line(fd);
+	char *s;
 	while (line)
 	{
 		dst[count] = line;
@@ -52,19 +53,18 @@ void parsing_map(t_data *data, char **map) {
 	while (map[count]) {
 		int index = 0;
 		while (map[count][index]) {
-			if (map[count][index + 1] && map[count][index] == 'N' && map[count][index + 1] == 'O') {
+			if (map[count][index + 1] && map[count][index] == 'N' && map[count][index + 1] == 'O')
 					data->img->no = ft_split(map[count], ' ');
-			}else if (map[count][index + 1] && map[count][index] == 'S' && map[count][index + 1] == 'O') {
+			else if (map[count][index + 1] && map[count][index] == 'S' && map[count][index + 1] == 'O')
 					data->img->so = ft_split(map[count], ' ');
-			}else if (map[count][index + 1] && map[count][index] == 'W' && map[count][index + 1] == 'E') {
+			else if (map[count][index + 1] && map[count][index] == 'W' && map[count][index + 1] == 'E')
 				data->img->we = ft_split(map[count], ' ');
-			}else if (map[count][index + 1] && map[count][index] == 'E' && map[count][index + 1] == 'A') {
+			else if (map[count][index + 1] && map[count][index] == 'E' && map[count][index + 1] == 'A')
 				data->img->ea = ft_split(map[count], ' ');
-			}else if (map[count][index] == 'F') {
+			else if (map[count][index] == 'F')
 				data->rgb->floor = ft_split(map[count], ' ');
-			}else if (map[count][index] == 'C') {
+			else if (map[count][index] == 'C')
 				data->rgb->ceil = ft_split(map[count], ' ');
-			}
 			index++;
 		}
 		count++;
@@ -80,8 +80,9 @@ int main(int __unused argc, char __unused **argv) {
 	printf("SOUTH => %s\n", data->img->so[1]);
 	printf("WEST  => %s\n", data->img->we[1]);
 	printf("EAST  => %s\n", data->img->ea[1]);
-	printf("______________________________\n");
+	printf("-----------------------------\n");
 	printf("CEIL  => %s\n", data->rgb->ceil[1]);
 	printf("FLOOR  => %s\n", data->rgb->floor[1]);
+	while (1);
 	return 0;
 }
