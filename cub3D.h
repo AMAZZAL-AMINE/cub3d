@@ -29,4 +29,20 @@ typedef struct map_data
 } t_data;
 
 char	**ft_split(char const *s, char c);
+char	*ft_strndup(char const *str, size_t max);
+int strlen_2d_array(char **array);
+char **read_map(char *mapfile);
+int	ft_atoi(const char *str);
+void free_double(char **array);
+int ft_isdigit(int nbr);
+void check_valid_map(t_data *data);
+// PARSING 
+int parsing_map(t_data *data, char **map);
+
+// check MAP
+int check_south(char **sorth);
+void  check_nswe(t_data *data);
+int error_fd_not_found(char *msg);
+int error_map(char *msg);
+void check_rgb(t_data *data);
 #endif
