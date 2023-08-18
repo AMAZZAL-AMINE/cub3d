@@ -6,76 +6,27 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 13:56:45 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:35:19 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char **read_map(char *mapfile) {
-	int		count;
-	int		fd;
-	char	*line;
-	char	**dst;
+int	strlen_2d_array(char **array)
+{
+	int	count;
 
-	fd = open(mapfile, O_RDONLY);
-	count = 1;
-	line = get_next_line(fd);
-	while (line)
-	{
-		line = get_next_line(fd);
-		free(line);
-		count++;
-	}
-	close(fd);
-	dst = malloc(sizeof(char *) * (count + 1));
 	count = 0;
-	fd = open(mapfile, O_RDONLY);
-	line = get_next_line(fd);
-	char *s;
-	while (line)
-	{
-		dst[count] = line;
-		line = get_next_line(fd);
+	while (array[count])
 		count++;
-	}
-	dst[count] = 0;
-	return dst;
+	return (count);
 }
 
-void parsing_map(t_data *data, char **map) {
-	int count = 0;
-	t_rgb *rgb = malloc(sizeof(t_rgb));
-	t_img *img = malloc(sizeof(t_img));
-	data->img = img;
-	data->rgb = rgb;
-	char **splited;
-	while (map[count]) {
-		int index = 0;
-		while (map[count][index]) {
-			if (map[count][index + 1] && map[count][index] == 'N' && map[count][index + 1] == 'O')
-					data->img->no = ft_split(map[count], ' ');
-			else if (map[count][index + 1] && map[count][index] == 'S' && map[count][index + 1] == 'O')
-					data->img->so = ft_split(map[count], ' ');
-			else if (map[count][index + 1] && map[count][index] == 'W' && map[count][index + 1] == 'E')
-				data->img->we = ft_split(map[count], ' ');
-			else if (map[count][index + 1] && map[count][index] == 'E' && map[count][index + 1] == 'A')
-				data->img->ea = ft_split(map[count], ' ');
-			else if (map[count][index] == 'F')
-				data->rgb->floor = ft_split(map[count], ' ');
-			else if (map[count][index] == 'C')
-				data->rgb->ceil = ft_split(map[count], ' ');
-			index++;
-		}
-		count++;
-	}
-}
+void	print_map(t_data *data, char **map)
+{
+	int	count;
 
-int main(int __unused argc, char __unused **argv) {
-	char **map = read_map(argv[1]);
-	t_data *data = malloc(sizeof(t_data));
-	int count = 0;
-	parsing_map(data, map);
+	count = 0;
 	printf("NORTH => %s\n", data->img->no[1]);
 	printf("SOUTH => %s\n", data->img->so[1]);
 	printf("WEST  => %s\n", data->img->we[1]);
@@ -83,6 +34,35 @@ int main(int __unused argc, char __unused **argv) {
 	printf("-----------------------------\n");
 	printf("CEIL  => %s\n", data->rgb->ceil[1]);
 	printf("FLOOR  => %s\n", data->rgb->floor[1]);
-	while (1);
-	return 0;
+	printf("-----------------------------\n");
+	while (data->map[count])
+	{
+		printf("MAP => %s\n", data->map[count]);
+		count++;
+	}
+}
+
+int	main(int __unused argc, char __unused **argv)
+{
+	char	**map;
+	t_data	*data;
+	int		count;
+	int		last_index;
+
+	if (argc != 2)
+		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
+	map = read_map(argv[1]);
+	data = malloc(sizeof(t_data));
+	count = 0;
+	last_index = parsing_map(data, map);
+	if (last_index == -1)
+	{
+		write(2, "Error\n", 7);
+		return (1);
+	}
+	check_valid_map(data);
+	check_nswe(data);
+	check_rgb(data);
+	print_map(data, map);
+	return (0);
 }
