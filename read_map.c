@@ -6,22 +6,22 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 15:14:05 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 18:19:05 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:24:40 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char **read_map(char *mapfile) {
+int	count_lines(char *mapfile)
+{
 	int		count;
 	int		fd;
 	char	*line;
 	char	**dst;
 
 	fd = open(mapfile, O_RDONLY);
-	if (fd < 0) {
+	if (fd < 0)
 		error_fd_not_found("Error\nFILE NOT FOUND\n");
-	}
 	count = 1;
 	line = get_next_line(fd);
 	while (line)
@@ -31,12 +31,19 @@ char **read_map(char *mapfile) {
 		count++;
 	}
 	close(fd);
-	dst = malloc(sizeof(char *) * (count + 1));
+	return (count);
+}
+
+char	**read_map(char *mapfile)
+{
+	int		count;
+	int		fd;
+	char	*line;
+	char	**dst;
+
+	dst = malloc(sizeof(char *) * (count_lines(mapfile) + 1));
 	count = 0;
 	fd = open(mapfile, O_RDONLY);
-	if (fd < 0) {
-		error_fd_not_found("Error\nFILE NOT FOUND\n");
-	}
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -45,5 +52,6 @@ char **read_map(char *mapfile) {
 		count++;
 	}
 	dst[count] = 0;
-	return dst;
+	close(fd);
+	return (dst);
 }

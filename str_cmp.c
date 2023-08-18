@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   str_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 19:17:02 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:33:07 by mamazzal         ###   ########.fr       */
+/*   Created: 2023/08/18 19:49:43 by mamazzal          #+#    #+#             */
+/*   Updated: 2023/08/18 20:33:44 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	ft_atoi(const char *str)
+int	str_cmp(char *s1, char *s2)
 {
-	int	ci;
-	int	fr;
-	int	isminus;
+	int	i;
 
-	ci = 0;
-	isminus = 1;
-	fr = 0;
-	while ((str[ci] >= '\t' && str[ci] <= '\r') || str[ci] == ' ')
-	{
-		ci++;
-	}
-	if (str[ci] == '-' || str[ci] == '+')
-	{
-		if (str[ci] == '-')
-		{
-			isminus = -1;
-		}
-		ci++;
-	}
-	while (str[ci] >= '0' && str[ci] <= '9')
-	{
-		fr = (fr * 10) + (str[ci] - '0');
-		ci++;
-	}
-	return (fr * isminus);
+	i = 0;
+	while ((s1[i] && s2[i]) && s1[i] == s2[i])
+		i++;
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (1);
+	return (0);
 }
