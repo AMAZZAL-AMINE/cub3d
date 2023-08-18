@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:35:19 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:32:43 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int __unused argc, char __unused **argv)
 	t_data	*data;
 	int		count;
 	int		last_index;
+	t_vars	vars;
 
 	if (argc != 2)
 		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
@@ -64,5 +65,6 @@ int	main(int __unused argc, char __unused **argv)
 	check_nswe(data);
 	check_rgb(data);
 	print_map(data, map);
+	mlx_init_func(vars, data);
 	return (0);
 }

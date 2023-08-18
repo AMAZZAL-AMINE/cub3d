@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
+#    By: rouali <rouali@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/18 19:50:16 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/08/18 22:30:24 by rouali           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ GNLN = ./gnln/get_next_line.c ./gnln/get_next_line_utils.c errors.c
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-SRC = cub3D.c ft_split.c ./parsing/parsing.c read_map.c \
-			parsing/check_nswe.c parsing/check_rgb.c ft_atoi.c \
-			free_double.c ft_isdigit.c parsing/check_valid_map.c \
+SRC = cub3D.c ./libft_utils/ft_split.c ./parsing/parsing.c read_map.c \
+			parsing/check_nswe.c parsing/check_rgb.c \
+			free_double.c parsing/check_valid_map.c \
 			./parsing/check_rgb_utilis.c ./parsing/parsing_split_line_function.c \
-			str_cmp.c
+			./libft_utils/str_cmp.c ./mlx_utils/draw_map.c ./libft_utils/libft_utils.c ./mlx_utils/hook.c \
+			./mlx_utils/mlx_init.c
 
 OBJ = $(SRC:.c=.o)
 

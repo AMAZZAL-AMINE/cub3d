@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   str_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 19:49:43 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:33:44 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:25:26 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 int	str_cmp(char *s1, char *s2)
 {

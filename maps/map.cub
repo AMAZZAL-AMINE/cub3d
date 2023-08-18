@@ -1,9 +1,9 @@
-SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture
-C 225,030,166
-F 222,100,100
 EA ./path_to_the_east_texture
 NO ./path_to_the_north_texturef
+SO ./path_to_the_south_texture
+C 225,030,166
+F 222,100,100
 
 
         1111111111111111111111111

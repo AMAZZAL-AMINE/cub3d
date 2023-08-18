@@ -1,16 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 19:17:02 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:33:07 by mamazzal         ###   ########.fr       */
+/*   Created: 2023/08/18 10:19:15 by rouali            #+#    #+#             */
+/*   Updated: 2023/08/18 22:36:39 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
+
+int	ft_isdigit(int nbr)
+{
+	if (nbr < '0' || nbr > '9')
+		return (0);
+	return (1);
+}
+
+/* ############### Count Char ############### */
+int	ft_count(char **map)
+{
+	int	x;
+
+	x = 0;
+	while (map[0][x])
+		x++;
+	return (x);
+}
+
+/* ############# Count Line ###################### */
+int	f_strlen(char **map)
+{
+	int	y;
+
+	y = 0;
+	while (map[y])
+		y++;
+	return (y);
+}
 
 int	ft_atoi(const char *str)
 {

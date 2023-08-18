@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:28:40 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:32:47 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include "./gnln/get_next_line.h"
 
+/*PAESING STRUCTER*/
 typedef struct t_check_rgb
 {
 	char	**splited;
@@ -59,7 +60,45 @@ typedef struct t_pars
 	int		stoped;
 	int		index;
 }	t_pars;
+/*END PARSING STRUCTER*/
 
+/*MLX UTILIS STRUCTER*/
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
+}	t_pixle;
+
+typedef struct s_display_win
+{
+	int	w;
+	int	h;
+}	t_dis;
+
+typedef struct s_vars
+{
+	char	**map;
+	void	*mlx;
+	void	*win;
+	t_pixle	*img;
+	t_dis	dis;
+	char	*add;
+	int		key;
+}				t_vars;
+
+struct s_direction
+{
+	int	x;
+	int	y;
+} dir;
+/*END MLX UTILIS STRUCTER*/
+
+/* ############### cub3D.c ############### */
+/* ############### ft_split.c ############### */
 char	**ft_split(char const *s, char c);
 char	*ft_strndup(char const *str, size_t max);
 int		strlen_2d_array(char **array);
@@ -88,4 +127,19 @@ void	check_nswe(t_data *data);
 int		error_fd_not_found(char *msg);
 int		error_map(char *msg);
 void	check_rgb(t_data *data);
+
+/* ############### draw_map.c ############### */
+void	draw(t_vars *vars, int color);
+void	put_pxl(t_vars *vars);
+
+/* ############### libft_utils.c ############### */
+int		ft_count(char **map);
+int		f_strlen(char **map);
+
+/* ############### hook.c ############### */
+int		ft_close(void);
+int		key_hook(int keycode, t_vars *vars);
+void	ft_move(t_vars *vars);
+void	mlx_init_func(t_vars vars, t_data *data);
+
 #endif
