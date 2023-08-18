@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/17 13:56:45 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:40:27 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char **read_map(char *mapfile) {
 	line = get_next_line(fd);
 	while (line)
 	{
-		line = get_next_line(fd);
 		free(line);
+		line = get_next_line(fd);
 		count++;
 	}
 	close(fd);
@@ -32,7 +32,6 @@ char **read_map(char *mapfile) {
 	count = 0;
 	fd = open(mapfile, O_RDONLY);
 	line = get_next_line(fd);
-	char *s;
 	while (line)
 	{
 		dst[count] = line;
@@ -71,18 +70,34 @@ void parsing_map(t_data *data, char **map) {
 	}
 }
 
-int main(int __unused argc, char __unused **argv) {
-	char **map = read_map(argv[1]);
-	t_data *data = malloc(sizeof(t_data));
-	int count = 0;
-	parsing_map(data, map);
-	printf("NORTH => %s\n", data->img->no[1]);
-	printf("SOUTH => %s\n", data->img->so[1]);
-	printf("WEST  => %s\n", data->img->we[1]);
-	printf("EAST  => %s\n", data->img->ea[1]);
-	printf("-----------------------------\n");
-	printf("CEIL  => %s\n", data->rgb->ceil[1]);
-	printf("FLOOR  => %s\n", data->rgb->floor[1]);
-	while (1);
-	return 0;
+
+
+int	main(int __unused argc, char __unused **argv)
+{
+	t_data	*data = malloc(sizeof(t_data));
+	t_vars	vars;
+	t_dis	dis;
+
+	if (argc != 2)
+	{
+		printf("Error\n");
+		return (0);
+	}
+	vars.map = read_map(argv[1]);
+	parsing_map(data, vars.map);
+
+	// Initialize Minilibx
+    vars.mlx = mlx_init();
+	// Create a window
+	dis.w = ft_count(vars.map) * 10;
+	dis.h = f_strlen(vars.map) * 10;
+	vars.win = mlx_new_window(vars.mlx, dis.w, dis.h, "33-34 hakma l3alam");
+	vars.img = mlx_new_image(vars.mlx, dis.w, dis.h);
+	vars.add = mlx_get_data_addr(vars.img, &vars.img->bits_per_pixel, &vars.img->line_length, &vars.img->endian);
+	put_pxl(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, dis.w, dis.h);
+	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 17, 0, ft_close, &vars);
+	mlx_loop(vars.mlx);
+	return (0);
 }

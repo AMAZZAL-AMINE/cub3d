@@ -6,7 +6,7 @@
 #    By: rouali <rouali@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/17 13:55:02 by rouali           ###   ########.fr        #
+#    Updated: 2023/08/18 10:40:47 by rouali           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ GNLN = ./gnln/get_next_line.c ./gnln/get_next_line_utils.c
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-SRC = cub3D.c ft_split.c
+SRC = cub3D.c ./utils/ft_split.c ./utils/draw_map.c ./utils/libft_utils.c ./utils/hook.c
 
 OBJ = $(SRC:.c=.o)
 
