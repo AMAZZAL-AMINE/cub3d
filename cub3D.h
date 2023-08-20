@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 22:32:47 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/20 20:03:34 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,15 @@ void	split_map_line_redirection(char *line, t_data *data, \
 void	split_map_line_floor(char *line, t_data *data, t_pars *pars);
 void	split_map_line_ceil(char *line, t_data *data, t_pars *pars);
 int		is_it_rgb(char c1, t_pars *pars, char **map);
+char	**duplcate_map(char **oldmap);
+void	print_map(t_data *data, char **map);
 // check MAP
 int		check_south(char **sorth);
 void	check_nswe(t_data *data);
 int		error_fd_not_found(char *msg);
 int		error_map(char *msg);
 void	check_rgb(t_data *data);
+void	check_content_of_map(char **map);
 
 /* ############### draw_map.c ############### */
 void	draw(t_vars *vars, int color);

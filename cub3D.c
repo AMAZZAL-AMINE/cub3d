@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 22:32:43 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/20 20:33:13 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int __unused argc, char __unused **argv)
 		write(2, "Error\n", 7);
 		return (1);
 	}
+	check_content_of_map(data->map);
 	check_valid_map(data);
 	check_nswe(data);
 	check_rgb(data);
