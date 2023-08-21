@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/20 22:39:31 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/21 11:18:53 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
-
-	dst = vars->img->addr + (y * vars->img->line_length + x * ((vars->img->bits_per_pixel) / 8));
+	int offset = ((y * vars->img->line_length) + (x * (vars->img->bits_per_pixel / 8)));
+	dst = vars->img->addr + offset;
 	*(unsigned int*)dst = color;
 }
 /* ############# Draw ############# */
@@ -26,12 +26,12 @@ void	draw(t_vars *vars, int color)
 	int	j;
 
 	i = 0;
-	while (i <= 50)
+	while (i < vars->win_size)
 	{
 		j = 0;
-		while (j <= 50)
+		while (j < vars->win_size)
 		{
-			my_mlx_pixel_put(vars, dir.x, dir.y, color);
+			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i) / 3, (dir.y * vars->win_size + j) / 3, color);
 			j++;
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/20 22:36:00 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/21 11:05:38 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_vars
 	t_dis	dis;
 	char	*add;
 	int		key;
+	int	win_size;
 }				t_vars;
 
 struct s_direction

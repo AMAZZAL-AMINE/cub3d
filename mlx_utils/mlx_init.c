@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/20 22:35:25 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/21 11:09:12 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	mlx_init_func(t_vars vars, t_data *data)
 {
 	vars.map = data->map;
 	vars.mlx = mlx_init();
-	vars.dis.w = ft_count(data->map) * 50;
-	vars.dis.h = f_strlen(data->map) * 50;
+	vars.win_size = 50;
+	vars.dis.w = ft_count(data->map) * vars.win_size;
+	vars.dis.h = f_strlen(data->map) * vars.win_size;
 	vars.win = mlx_new_window(vars.mlx, vars.dis.w, \
 		vars.dis.h, "33-34 hakma l3alam");
 	vars.img->img = mlx_new_image(vars.mlx, vars.dis.w, vars.dis.h);
