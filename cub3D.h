@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/21 11:05:38 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:04:41 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_display_win
 
 typedef struct s_vars
 {
+	float	p_pos_x;
+	float	p_pos_y;
 	char	**map;
 	void	*mlx;
 	void	*win;

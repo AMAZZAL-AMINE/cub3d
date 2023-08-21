@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/21 11:18:53 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:41:44 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	put_pxl(t_vars *vars)
 			else if (vars->map[dir.y][dir.x] == '0')
 				draw (vars, 0x00808080);
 			else if (vars->map[dir.y][dir.x] == 'N')
-				draw (vars, 0x00FF0000);
+				draw (vars, 0x0000FF00);
 			else if (vars->map[dir.y][dir.x] == 'S')
 				draw (vars, 0x00FFFF00);
 			else if (vars->map[dir.y][dir.x] == 'E')
