@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/21 14:46:06 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:56:52 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	mlx_init_func(t_vars vars, t_data *data)
 		&vars.img->line_length, &vars.img->endian);
 	put_pxl(&vars);
 	mlx_key_hook(vars.win, key_hook, &vars);
-	printf("ahhahahahaha \n");
+	// mlx_loop_hook(vars.mlx, key_hook, &vars);
 	mlx_hook(vars.win, 17, 0, ft_close, &vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, \
 		vars.img->img, 0, 0);
