@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/21 20:58:14 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:30:38 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct s_vars
 
 struct s_direction
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 } dir;
 /*END MLX UTILIS STRUCTER*/
 
@@ -126,6 +126,7 @@ void	split_map_line_ceil(char *line, t_data *data, t_pars *pars);
 int		is_it_rgb(char c1, t_pars *pars, char **map);
 char	**duplcate_map(char **oldmap);
 void	print_map(t_data *data, char **map);
+void ft_move(t_vars *vars);
 // check MAP
 int		check_south(char **sorth);
 void	check_nswe(t_data *data);
