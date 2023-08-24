@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/24 10:16:11 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:04:12 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,29 @@ void	draw(t_vars *vars, int color)
 	int	j;
 
 	i = 0;
-	while (i <= vars->win_size)
+	while (i < vars->win_size)
 	{
 		j = 0;
-		while (j <= vars->win_size)
+		while (j < vars->win_size)
 		{
-			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i) / 2, (dir.y * vars->win_size + j) / 2, color);
+			my_mlx_pixel_put(vars, dir.x * vars->win_size + i, dir.y * vars->win_size + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+void	draw_player(t_vars *vars, int color)
+{
+	int	i;
+	int	j;
+
+	i = dir.x - 5;
+	while (i <  dir.x + 5)
+	{
+		j = dir.y - 5;
+		while (j < dir.y + 5)
+		{
+			my_mlx_pixel_put(vars, dir.x * vars->win_size + i, dir.y * vars->win_size + j, color);
 			j++;
 		}
 		i++;
@@ -59,7 +76,7 @@ void	put_pxl(t_vars *vars)
 				draw (vars, 0x00808080);
 				dir.x = vars->p_pos_x;
 				dir.y = vars->p_pos_y;
-				draw (vars, 0x0000FF00);
+				draw_player (vars, 0x0000FF00);
 				dir.x = tmp_x;
 				dir.y = tmp_y;
 			}
