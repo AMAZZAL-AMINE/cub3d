@@ -6,13 +6,11 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:29:49 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/24 16:08:54 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:09:32 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-#define MOVE_SPEED 0.05
 
 void move_up(t_vars *vars)
 {
