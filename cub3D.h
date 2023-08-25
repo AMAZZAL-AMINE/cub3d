@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/25 12:35:32 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:15:23 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #ifndef MOVE_SPEED
 # define MOVE_SPEED 0.1
 #endif
+
+#define RADIAN 0.0174533
 
 /*PAESING STRUCTER*/
 typedef struct t_check_rgb
@@ -83,10 +85,23 @@ typedef struct s_display_win
 	int	h;
 }	t_dis;
 
+struct s_direction
+{
+	float	x;
+	float	y;
+} dir;
+
+typedef struct t_point
+{
+	float	x;
+	float	y;
+} t_point;
+
 typedef struct s_vars
 {
 	float	p_pos_x;
 	float	p_pos_y;
+	float p_rotat;
 	char	**map;
 	void	*mlx;
 	void	*win;
@@ -96,12 +111,6 @@ typedef struct s_vars
 	int		key;
 	int	win_size;
 }				t_vars;
-
-struct s_direction
-{
-	float	x;
-	float	y;
-} dir;
 /*END MLX UTILIS STRUCTER*/
 
 /* ############### cub3D.c ############### */
