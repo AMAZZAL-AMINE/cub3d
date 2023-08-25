@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:03:28 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:33:09 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ struct s_direction
 
 /* ############### cub3D.c ############### */
 /* ############### ft_split.c ############### */
-int	create_trgb(int t, int r, int g, int b);
+int	create_trgb(int r, int g, int b);
 char	**ft_split(char const *s, char c);
 char	*ft_strndup(char const *str, size_t max);
 int		strlen_2d_array(char **array);

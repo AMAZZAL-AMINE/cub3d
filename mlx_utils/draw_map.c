@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/25 11:06:11 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:33:16 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ void	draw(t_vars *vars, int color)
 		j = 0;
 		while (j < vars->win_size)
 		{
+			my_mlx_pixel_put(vars, (dir.x * vars->win_size) + 0, (dir.y * vars->win_size)  +j, create_trgb(255,255,255));
 			my_mlx_pixel_put(vars, dir.x * vars->win_size + i, dir.y * vars->win_size + j, color);
 			j++;
 		}
+		my_mlx_pixel_put(vars, (dir.x * vars->win_size) + i, (dir.y * vars->win_size)  + 0, create_trgb(255,255,255));
 		i++;
 	}
 }
@@ -75,7 +77,7 @@ void	put_player_pixel(t_vars *vars) {
 			{
 				tmp_x = dir.x;
 				tmp_y = dir.y;
-				draw (vars, 0x00808080);
+				draw (vars, 0x00FF0000);
 				dir.x = vars->p_pos_x;
 				dir.y = vars->p_pos_y;
 				draw_player (vars, 0x0000FF00);
@@ -102,7 +104,7 @@ void	put_pxl(t_vars *vars)
 			if (vars->map[(int)dir.y][(int)dir.x] == '1')
 				draw (vars, 0x000000FF);
 			else if (vars->map[(int)dir.y][(int)dir.x] == '0')
-				draw (vars, 0x00808080);
+				draw (vars, 0x00FF0000);
 			dir.x++;
 		}
 		dir.y++;
