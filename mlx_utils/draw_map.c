@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/24 16:04:12 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:26:22 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,25 @@ void	draw(t_vars *vars, int color)
 		i++;
 	}
 }
+
 void	draw_player(t_vars *vars, int color)
 {
-	int	i;
-	int	j;
+	int	radius;
+	int	x;
+	int	y;
 
-	i = dir.x - 5;
-	while (i <  dir.x + 5)
+	radius = 5;
+	x = -radius;
+	while (x < radius)
 	{
-		j = dir.y - 5;
-		while (j < dir.y + 5)
+		y = -radius;
+		while (y < radius)
 		{
-			my_mlx_pixel_put(vars, dir.x * vars->win_size + i, dir.y * vars->win_size + j, color);
-			j++;
+			if (x * x + y * y < radius * radius)
+				my_mlx_pixel_put(vars, dir.x * vars->win_size + x, dir.y * vars->win_size + y, color);
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
 
@@ -70,7 +74,8 @@ void	put_pxl(t_vars *vars)
 				draw (vars, 0x000000FF);
 			else if (vars->map[(int)dir.y][(int)dir.x] == '0')
 				draw (vars, 0x00808080);
-			else if (vars->map[(int)dir.y][(int)dir.x] == 'N') {
+			else if (vars->map[(int)dir.y][(int)dir.x] == 'N')
+			{
 				tmp_x = dir.x;
 				tmp_y = dir.y;
 				draw (vars, 0x00808080);

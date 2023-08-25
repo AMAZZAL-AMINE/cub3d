@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/24 16:15:10 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:15:39 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "./gnln/get_next_line.h"
 
 #ifndef MOVE_SPEED
-# define MOVE_SPEED 0.02
+# define MOVE_SPEED 0.4
 #endif
 
 /*PAESING STRUCTER*/
