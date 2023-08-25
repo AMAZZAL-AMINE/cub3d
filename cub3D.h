@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/25 12:33:09 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:35:32 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "./gnln/get_next_line.h"
 
 #ifndef MOVE_SPEED
-# define MOVE_SPEED 0.4
+# define MOVE_SPEED 0.1
 #endif
 
 /*PAESING STRUCTER*/
