@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/25 10:58:11 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:06:11 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	draw_player(t_vars *vars, int color)
 	}
 }
 
+void	draw_player_line_derection(t_vars __unused *vars)
+{
+}
 
 void	put_player_pixel(t_vars *vars) {
 	int	tmp_x;
@@ -76,6 +79,7 @@ void	put_player_pixel(t_vars *vars) {
 				dir.x = vars->p_pos_x;
 				dir.y = vars->p_pos_y;
 				draw_player (vars, 0x0000FF00);
+				draw_player_line_derection(vars);
 				dir.x = tmp_x;
 				dir.y = tmp_y;
 			}
