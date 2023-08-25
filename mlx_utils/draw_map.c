@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/25 10:53:22 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:58:11 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	draw_player(t_vars *vars, int color)
 	}
 }
 
-// /* ############# Put_pxl ############# */
 
 void	put_player_pixel(t_vars *vars) {
 	int	tmp_x;
