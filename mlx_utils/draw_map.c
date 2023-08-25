@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/25 10:26:22 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/25 10:53:22 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	dst = vars->img->addr + offset;
 	*(unsigned int*)dst = color;
 }
-/* ############# Draw ############# */
+
 void	draw(t_vars *vars, int color)
 {
 	int	i;
@@ -44,14 +44,14 @@ void	draw_player(t_vars *vars, int color)
 	int	x;
 	int	y;
 
-	radius = 5;
+	radius = 10;
 	x = -radius;
 	while (x < radius)
 	{
 		y = -radius;
 		while (y < radius)
 		{
-			if (x * x + y * y < radius * radius)
+			if ((x * x) + (y * y) < (radius * radius))
 				my_mlx_pixel_put(vars, dir.x * vars->win_size + x, dir.y * vars->win_size + y, color);
 			y++;
 		}
@@ -60,6 +60,32 @@ void	draw_player(t_vars *vars, int color)
 }
 
 // /* ############# Put_pxl ############# */
+
+void	put_player_pixel(t_vars *vars) {
+	int	tmp_x;
+	int	tmp_y;
+	while (vars->map[(int)dir.y])
+	{
+		dir.x = 0;
+		while (vars->map[(int)dir.y][(int)dir.x])
+		{
+			if (vars->map[(int)dir.y][(int)dir.x] == 'N')
+			{
+				tmp_x = dir.x;
+				tmp_y = dir.y;
+				draw (vars, 0x00808080);
+				dir.x = vars->p_pos_x;
+				dir.y = vars->p_pos_y;
+				draw_player (vars, 0x0000FF00);
+				dir.x = tmp_x;
+				dir.y = tmp_y;
+			}
+			dir.x++;
+		}
+		dir.y++;
+	}
+}
+
 void	put_pxl(t_vars *vars)
 {
 	int	tmp_x;
@@ -74,23 +100,11 @@ void	put_pxl(t_vars *vars)
 				draw (vars, 0x000000FF);
 			else if (vars->map[(int)dir.y][(int)dir.x] == '0')
 				draw (vars, 0x00808080);
-			else if (vars->map[(int)dir.y][(int)dir.x] == 'N')
-			{
-				tmp_x = dir.x;
-				tmp_y = dir.y;
-				draw (vars, 0x00808080);
-				dir.x = vars->p_pos_x;
-				dir.y = vars->p_pos_y;
-				draw_player (vars, 0x0000FF00);
-				dir.x = tmp_x;
-				dir.y = tmp_y;
-			}
-			else if (vars->map[(int)dir.y][(int)dir.x] == 'S')
-				draw (vars, 0x00FFFF00);
-			else if (vars->map[(int)dir.y][(int)dir.x] == 'E')
-				draw (vars, 0x0000FFFF);
 			dir.x++;
 		}
 		dir.y++;
 	}
+	dir.x = 0;
+	dir.y = 0;
+	put_player_pixel(vars);
 }
