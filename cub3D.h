@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/25 18:15:23 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 12:33:16 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #endif
 
 #define RADIAN 0.0174533
+#define PI 3.14
+
 
 /*PAESING STRUCTER*/
 typedef struct t_check_rgb

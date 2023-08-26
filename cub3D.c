@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/25 17:06:12 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 12:37:08 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,6 @@ int	strlen_2d_array(char **array)
 	return (count);
 }
 
-void	print_map(t_data *data, char **map)
-{
-	int	count;
-
-	count = 0;
-	printf("NORTH => %s\n", data->img->no[1]);
-	printf("SOUTH => %s\n", data->img->so[1]);
-	printf("WEST  => %s\n", data->img->we[1]);
-	printf("EAST  => %s\n", data->img->ea[1]);
-	printf("-----------------------------\n");
-	printf("CEIL  => %s\n", data->rgb->ceil[1]);
-	printf("FLOOR  => %s\n", data->rgb->floor[1]);
-	printf("-----------------------------\n");
-	while (data->map[count])
-	{
-		printf("MAP => %s\n", data->map[count]);
-		count++;
-	}
-}
-
 int	main(int __unused argc, char __unused **argv)
 {
 	char	**map;
@@ -53,7 +33,7 @@ int	main(int __unused argc, char __unused **argv)
 	if (argc != 2)
 		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
 	map = read_map(argv[1]);
-	vars.p_rotat  = 90;
+	vars.p_rotat  = 180;
 	data = malloc(sizeof(t_data));
 	count = 0;
 	last_index = parsing_map(data, map);
@@ -66,7 +46,6 @@ int	main(int __unused argc, char __unused **argv)
 	check_valid_map(data);
 	check_nswe(data);
 	check_rgb(data);
-	print_map(data, map);
 	mlx_init_func(vars, data);
 	return (0);
 }
