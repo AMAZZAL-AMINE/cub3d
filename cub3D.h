@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 17:58:22 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:50:09 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <math.h>
 
 #ifndef MOVE_SPEED
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 0.1
 #endif
 
 #define RADIAN 0.0174533
