@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:29:49 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 19:53:12 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:26:58 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void move_up(t_vars *vars)
 {
 	if (vars->key == 13 || vars->key == 126)
 	{
-		vars->p_pos_x = vars->p_pos_x + (MOVE_SPEED * cos(vars->p_rotat * M_PI / 180));
-		vars->p_pos_y = vars->p_pos_y + (MOVE_SPEED * sin(vars->p_rotat * M_PI / 180));
+		vars->p_pos_x = vars->p_pos_x + (MOVE_SPEED * cosf(vars->p_rotat * PI / 180));
+		vars->p_pos_y = vars->p_pos_y + (MOVE_SPEED * sinf(vars->p_rotat * PI / 180));
 	}
 }
 
@@ -35,8 +35,8 @@ void move_down(t_vars *vars)
 {
 	if (vars->key == 1 || vars->key == 125)
 	{
-		vars->p_pos_x = vars->p_pos_x - (MOVE_SPEED * cos(vars->p_rotat * M_PI / 180));
-		vars->p_pos_y = vars->p_pos_y - (MOVE_SPEED * sin(vars->p_rotat * M_PI / 180));
+		vars->p_pos_x = vars->p_pos_x - (MOVE_SPEED * cosf(vars->p_rotat * PI / 180));
+		vars->p_pos_y = vars->p_pos_y - (MOVE_SPEED * sinf(vars->p_rotat * PI / 180));
 	}
 }
 

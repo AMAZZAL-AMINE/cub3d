@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 15:50:59 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:14:39 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	main(int __unused argc, char __unused **argv)
 		vars->p_rotat = 0;
 	else if (rotate_type == 'N')
 		vars->p_rotat = 90;
-	printf("eoratatatata => %f\n", vars->p_rotat);
 	mlx_init_func(vars, data);
 	return (0);
 }

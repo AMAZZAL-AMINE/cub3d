@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/26 17:49:34 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:01:53 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->img->addr = mlx_get_data_addr(vars->img->img, &vars->img->bits_per_pixel, \
 		&vars->img->line_length, &vars->img->endian);
 	put_pxl(vars);
-	mlx_hook(vars->win, 2, 0, key_hook, vars);
-	mlx_hook(vars->win, 3, 0, key_hook, vars);
 	mlx_hook(vars->win, 17, 0, ft_close, vars);
+	mlx_hook(vars->win, 2, 0, key_hook, vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, \
 		vars->img->img, 0, 0);
 	mlx_loop(vars->mlx);
