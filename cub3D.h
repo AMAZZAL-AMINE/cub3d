@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 19:50:09 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:53:00 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 # include "./gnln/get_next_line.h"
 #include <math.h>
 
-#ifndef MOVE_SPEED
 # define MOVE_SPEED 0.1
-#endif
-
+# define ROTATE_SPEED 2
 #define RADIAN 0.0174533
 #define PI 3.14
 

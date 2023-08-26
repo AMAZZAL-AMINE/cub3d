@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:29:49 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 19:49:42 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 19:53:12 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void move_right(t_vars *vars)
 //addddddddddd
 void	player_right_maze(t_vars *vars) {
 	if (vars->key == 124) {
-		vars->p_rotat += 1;
+		vars->p_rotat += ROTATE_SPEED;
 	}
 }
 //addddddddddd
 void	player_left_maze(t_vars *vars) {
 	if (vars->key == 123) {
-		vars->p_rotat -= 5;
+		vars->p_rotat -= ROTATE_SPEED;
 	}
 }
 
