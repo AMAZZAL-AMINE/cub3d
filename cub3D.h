@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 15:37:14 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:58:22 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <stdlib.h>
 # include <mlx.h>
 # include "./gnln/get_next_line.h"
+#include <math.h>
 
 #ifndef MOVE_SPEED
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.5
 #endif
 
 #define RADIAN 0.0174533
@@ -109,6 +110,7 @@ typedef struct s_vars
 	void	*win;
 	t_pixle	*img;
 	t_dis	dis;
+	t_point p1;
 	char	*add;
 	int		key;
 	int	win_size;

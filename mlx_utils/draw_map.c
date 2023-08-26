@@ -6,12 +6,11 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/26 17:23:11 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:47:36 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-#include <math.h>
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
@@ -32,11 +31,11 @@ void	draw(t_vars *vars, int color)
 		j = 0;
 		while (j < vars->win_size)
 		{
-			my_mlx_pixel_put(vars, (dir.x * vars->win_size) + 0, (dir.y * vars->win_size)  +j, create_trgb(0,0,0));
-			my_mlx_pixel_put(vars, dir.x * vars->win_size + i, dir.y * vars->win_size + j, color);
+			// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + 0) / 3, ((dir.y * vars->win_size)  +j) / 3, create_trgb(0,0,0));
+			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i), (dir.y * vars->win_size + j), color);
 			j++;
 		}
-		my_mlx_pixel_put(vars, (dir.x * vars->win_size) + i, (dir.y * vars->win_size)  + 0, create_trgb(0,0,0));
+		// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + i) / 3, ((dir.y * vars->win_size)  + 0) / 3, create_trgb(0,0,0));
 		i++;
 	}
 }
@@ -56,7 +55,7 @@ void	draw_player(t_vars *vars, int color)
 		while (y < radius)
 		{
 			if ((x * x) + (y * y) < (radius * radius))
-				my_mlx_pixel_put(vars, dir.x * vars->win_size + x, dir.y * vars->win_size + y, color);
+				my_mlx_pixel_put(vars, (dir.x * vars->win_size + x), (dir.y * vars->win_size + y), color);
 			y++;
 		}
 		x++;
@@ -103,6 +102,7 @@ void	put_player_pixel(t_vars *vars) {
 	p1.y = vars->p_pos_y * vars->win_size;
 	p2.x = fabs(p1.x + (cos(vars->p_rotat * (PI / 180)) * vars->win_size));
 	p2.y = fabs(p1.y + (sin(vars->p_rotat * (PI / 180)) * vars->win_size));
+	vars->p1 = p1;
 	while (vars->map[(int)dir.y])
 	{
 		dir.x = 0;
