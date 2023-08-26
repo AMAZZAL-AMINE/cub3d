@@ -1,0 +1,4 @@
+./cub3D.dSYM
+.vscode
+*.o
+.DS_Store
