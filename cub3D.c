@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 15:31:28 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:50:59 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,32 @@ int	strlen_2d_array(char **array)
 	return (count);
 }
 
+int	get_direction_type(char **map)
+{
+	int	count;
+	int	index;
+
+	count = 0;
+	while (map[count])
+	{
+		index = 0;
+		while (map[count][index])
+		{
+			if (map[count][index] == 'S')
+				return ('S');
+			else if (map[count][index] == 'W')
+				return ('W');
+			else if (map[count][index] == 'N')
+				return ('N');
+			else if (map[count][index] == 'E')
+				return ('E');
+			index++;
+		}
+		count++;
+	}
+	return (0);
+}
+
 int	main(int __unused argc, char __unused **argv)
 {
 	char	**map;
@@ -29,12 +55,11 @@ int	main(int __unused argc, char __unused **argv)
 	int		count;
 	int		last_index;
 	t_vars	*vars;
+	int			rotate_type;
 	
 	if (argc != 2)
 		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
-	vars = malloc(sizeof(t_vars));
 	map = read_map(argv[1]);
-	vars->p_rotat  = 180;
 	data = malloc(sizeof(t_data));
 	count = 0;
 	last_index = parsing_map(data, map);
@@ -47,6 +72,18 @@ int	main(int __unused argc, char __unused **argv)
 	check_valid_map(data);
 	check_nswe(data);
 	check_rgb(data);
+	vars = malloc(sizeof(t_vars));
+	vars->p_rotat = 0;
+	rotate_type = get_direction_type(data->map);
+	if (rotate_type == 'S')
+		vars->p_rotat = 270;
+	else if (rotate_type == 'W')
+		vars->p_rotat = 180;
+	else if (rotate_type == 'E')
+		vars->p_rotat = 0;
+	else if (rotate_type == 'N')
+		vars->p_rotat = 90;
+	printf("eoratatatata => %f\n", vars->p_rotat);
 	mlx_init_func(vars, data);
 	return (0);
 }

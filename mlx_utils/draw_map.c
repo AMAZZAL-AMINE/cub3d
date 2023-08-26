@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/26 15:30:42 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:46:49 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,15 @@ void	put_player_pixel(t_vars *vars) {
 
 	p1.x = vars->p_pos_x * vars->win_size;
 	p1.y = vars->p_pos_y * vars->win_size;
-	p2.x = (vars->p_pos_x * vars->win_size) + (cos(vars->p_rotat * PI/180) * vars->win_size);
-	p2.y = (vars->p_pos_y* vars->win_size) + (sin(vars->p_rotat * PI/180) * vars->win_size);
+	p2.x = (vars->p_pos_x * vars->win_size) + (cos(vars->p_rotat * (PI / 180)) * vars->win_size);
+	p2.y = (vars->p_pos_y* vars->win_size) + (sin(vars->p_rotat * (PI / 180)) * vars->win_size);
 	while (vars->map[(int)dir.y])
 	{
 		dir.x = 0;
 		while (vars->map[(int)dir.y][(int)dir.x])
 		{
-			if (vars->map[(int)dir.y][(int)dir.x] == 'N')
+			if (vars->map[(int)dir.y][(int)dir.x] == 'N' || vars->map[(int)dir.y][(int)dir.x] == 'E' \
+				|| vars->map[(int)dir.y][(int)dir.x] == 'W' || vars->map[(int)dir.y][(int)dir.x] == 'S')
 			{
 				tmp_x = dir.x;
 				tmp_y = dir.y;
