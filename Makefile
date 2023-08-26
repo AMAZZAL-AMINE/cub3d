@@ -6,7 +6,7 @@
 #    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/25 11:03:37 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/08/26 15:26:18 by mamazzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,12 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-FLAGS= -Wall -Wextra -Werror  -fsanitize=address -g
+CFLAGS= -Wall -Wextra -Werror  -fsanitize=address -g
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) $(GNLN) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(GNLN) $(MLX_FLAGS) -o $(NAME)
 	@echo "\033[32m[ ✔ ] cub3D"
 
 clean:

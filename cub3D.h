@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 12:33:16 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:28:08 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ int		f_strlen(char **map);
 int		ft_close(void);
 int		key_hook(int keycode, t_vars *vars);
 void	ft_move(t_vars *vars);
-void	mlx_init_func(t_vars vars, t_data *data);
+void	mlx_init_func(t_vars *vars, t_data *data);
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 

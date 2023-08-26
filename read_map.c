@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 15:14:05 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 20:24:40 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:26:24 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	count_lines(char *mapfile)
 	int		count;
 	int		fd;
 	char	*line;
-	char	**dst;
 
 	fd = open(mapfile, O_RDONLY);
 	if (fd < 0)

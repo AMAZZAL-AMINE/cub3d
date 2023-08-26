@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 12:37:08 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:31:28 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	main(int __unused argc, char __unused **argv)
 	t_data	*data;
 	int		count;
 	int		last_index;
-	t_vars	vars;
+	t_vars	*vars;
 	
 	if (argc != 2)
 		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
+	vars = malloc(sizeof(t_vars));
 	map = read_map(argv[1]);
-	vars.p_rotat  = 180;
+	vars->p_rotat  = 180;
 	data = malloc(sizeof(t_data));
 	count = 0;
 	last_index = parsing_map(data, map);
