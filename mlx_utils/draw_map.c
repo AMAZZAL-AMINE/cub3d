@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/26 22:22:45 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:36:30 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
-	int offset = ((y * vars->img->line_length) + (x * (vars->img->bits_per_pixel / 8)));
+	int		offset;
+
+	offset = ((y * vars->img->line_length) + \
+		(x * (vars->img->bits_per_pixel / 8)));
 	dst = vars->img->addr + offset;
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	draw(t_vars *vars, int color)
@@ -31,15 +34,14 @@ void	draw(t_vars *vars, int color)
 		j = 0;
 		while (j < vars->win_size)
 		{
-			// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + 0) / 3, ((dir.y * vars->win_size)  +j) / 3, create_trgb(0,0,0));
+			my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + 0), ((dir.y * vars->win_size)  +j), create_trgb(0,0,0));
 			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i), (dir.y * vars->win_size + j), color);
 			j++;
 		}
-		// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + i) / 3, ((dir.y * vars->win_size)  + 0) / 3, create_trgb(0,0,0));
+		my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + i), ((dir.y * vars->win_size)  + 0), create_trgb(0,0,0));
 		i++;
 	}
 }
-
 
 void	draw_player(t_vars *vars, int color)
 {
@@ -61,7 +63,6 @@ void	draw_player(t_vars *vars, int color)
 		x++;
 	}
 }
-
 
 void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 {
