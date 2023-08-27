@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/26 20:14:55 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:19:14 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <math.h>
 
 # define MOVE_SPEED 0.1
-# define ROTATE_SPEED 10
+# define ROTATE_SPEED 2
 #define RADIAN 0.0174533
 #define PI 3.14
 

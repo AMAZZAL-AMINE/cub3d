@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/27 13:36:30 by rouali           ###   ########.fr       */
+/*   Updated: 2023/08/27 15:31:51 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 	float dst_y; //destance y
 
 	float	steps; 
-	
+
 	dst_x = p2.x - p1.x; 
 	dst_y = p2.y - p1.y;
 	draw_x = p1.x;
 	draw_y = p1.y;
+
 	if (fabs(dst_y) > fabs(dst_x))
 		steps = fabs(dst_y) * vars->win_size;
 	else
@@ -85,7 +86,10 @@ void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 	dst_x = dst_x / steps;
 	dst_y = dst_y / steps;
 	int i = 0;
-	while (i < steps) {
+	while (i < steps * vars->win_size) {
+		if (vars->map[(int)draw_y / vars->win_size][(int)draw_x / vars->win_size] && vars->map[(int)draw_y / vars->win_size][(int)draw_x / vars->win_size] == '1') {
+			break;
+		}
 		my_mlx_pixel_put(vars, draw_x, draw_y, create_trgb(255, 0, 0));
 		draw_y += dst_y;
 		draw_x += dst_x;
