@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/26 17:47:36 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/26 22:22:45 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 	draw_x = p1.x;
 	draw_y = p1.y;
 	if (fabs(dst_y) > fabs(dst_x))
-		steps = fabs(dst_y);
+		steps = fabs(dst_y) * vars->win_size;
 	else
-		steps = fabs(dst_x);
+		steps = fabs(dst_x) * vars->win_size;
 	dst_x = dst_x / steps;
 	dst_y = dst_y / steps;
 	int i = 0;
@@ -92,7 +92,8 @@ void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 	}
 }
 
-void	put_player_pixel(t_vars *vars) {
+void	put_player_pixel(t_vars *vars)
+{
 	float	tmp_x;
 	float	tmp_y;
 	t_point p1;
