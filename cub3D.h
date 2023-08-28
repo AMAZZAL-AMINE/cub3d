@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 14:03:43 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:49:35 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ROTATE_SPEED 5
 #define RADIAN 0.0174533
 #define PI 3.14
+#define ZOOM 5
 
 
 /*PAESING STRUCTER*/
@@ -120,6 +121,7 @@ typedef struct s_vars
 	char	*add;
 	int		key;
 	int	win_size;
+	float fov;
 }				t_vars;
 /*END MLX UTILIS STRUCTER*/
 

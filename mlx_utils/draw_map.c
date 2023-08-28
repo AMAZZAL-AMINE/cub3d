@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 14:04:47 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:28:02 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,27 @@ void	draw(t_vars *vars, int color)
 		j = 0;
 		while (j < vars->win_size)
 		{
-			// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + 0), ((dir.y * vars->win_size)  +j), create_trgb(0,0,0));
-			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i), (dir.y * vars->win_size + j), color);
+			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i) / ZOOM, (dir.y * vars->win_size + j) / ZOOM, color);
 			j++;
 		}
-		// my_mlx_pixel_put(vars, ((dir.x * vars->win_size) + i), ((dir.y * vars->win_size)  + 0), create_trgb(0,0,0));
+		i++;
+	}
+}
+
+void	draw_cub_3d(t_vars *vars, t_point p1, t_point p2, int color)
+{
+	float	i;
+	float	j;
+
+	i = p1.y;
+	while (i < p2.y)
+	{
+		j = p1.x;
+		while (j < p2.x)
+		{
+			my_mlx_pixel_put(vars, j, i, color);
+			j++;
+		}
 		i++;
 	}
 }
@@ -57,14 +73,14 @@ void	draw_player(t_vars *vars, int color)
 		while (y < radius)
 		{
 			if ((x * x) + (y * y) < (radius * radius))
-				my_mlx_pixel_put(vars, (dir.x * vars->win_size + x), (dir.y * vars->win_size + y), color);
+				my_mlx_pixel_put(vars, (dir.x * vars->win_size + x) / ZOOM, (dir.y * vars->win_size + y) / ZOOM, color);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
+float	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 {
 	float draw_x;
 	float draw_y;
@@ -95,33 +111,63 @@ void	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 				&& (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' \
 					|| vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' '))
 					 || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)]) {
-			vars->rays_point.x = draw_x;
-			vars->rays_point.y = draw_y;
+			end_x = draw_x;
+			end_y = draw_y;
 			break;
 		}
-		my_mlx_pixel_put(vars, (int)draw_x, (int)draw_y, create_trgb(255, 0, 0));
+		my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 0, 0));
 		draw_y += dst_y;
 		draw_x += dst_x;
 		i++;
 	}
-	vars->rays_point.dis = sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y));
+	printf("%f\n", sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y)));
+	return (float)(sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y)));
+}
+
+void	draw_walls_3d(t_vars __unused *vars, int __unused rays, float dis)
+{
+	t_point __unused p1;
+	t_point __unused p2;
+	float 					tail;
+	float						tall;
+	printf("c = %f\n", dis);
+	tail = vars->dis.w / (vars->fov * 10) ;
+	p1.x = rays * tail;
+	p2.x = p1.x + tail;
+
+	tall  = (vars->dis.h * vars->win_size) / dis;
+	p1.y = (vars->dis.h / 2) - tall;
+	if (p1.y < 0) {
+		p1.y = 0;
+	}
+	p2.y = (vars->dis.h / 2) + tall;
+	if (p2.y > vars->dis.h) {
+		p2.y = vars->dis.h;
+	}
+	draw_cub_3d(vars, p1, p2, create_trgb(153,255,51));
 }
 
 void steps_line_player(t_point p1, t_point p2, t_vars *vars)
 {
 	float eng;
-
-	eng = vars->p_rotat - 30;
-	while(eng <= vars->p_rotat + 30)
+	int		rays;
+	
+	vars->fov = 60;
+	eng = vars->p_rotat - (vars->fov / 2);
+	rays = 0;
+	while(eng <= vars->p_rotat + (vars->fov / 2))
 	{
 		p1.x = vars->p_pos_x * vars->win_size;
 		p1.y = vars->p_pos_y * vars->win_size;
 		p2.x = p1.x + (cos(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 		p2.y = p1.y + (sin(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
-		draw_player_line_derection(p1, p2, vars);
+		float dis = draw_player_line_derection(p1, p2, vars);
+		draw_walls_3d(vars, rays, dis);
 		eng += 0.1;
+		rays++;
 	}
 }
+
 
 void	put_player_pixel(t_vars *vars)
 {
@@ -137,7 +183,6 @@ void	put_player_pixel(t_vars *vars)
 	vars->p1 = p1;
 
 	//draw  player derection ras
-
 	while (vars->map[(int)dir.y])
 	{
 		dir.x = 0;
