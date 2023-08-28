@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 19:13:14 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:27:13 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "./gnln/get_next_line.h"
 #include <math.h>
 
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.3
 # define ROTATE_SPEED 5
 #define RADIAN 0.0174533
 #define PI 3.14
-#define ZOOM 5
+#define ZOOM 8
 
 
 /*PAESING STRUCTER*/

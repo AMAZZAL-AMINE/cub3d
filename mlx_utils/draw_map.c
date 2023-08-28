@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 19:21:27 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:42:32 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw(t_vars *vars, int color)
+void	draw(t_vars *vars, int __unused color)
 {
 	float	i;
 	float	j;
@@ -40,6 +40,11 @@ void	draw(t_vars *vars, int color)
 		i++;
 	}
 }
+
+// void draw_img_pixel()
+// {
+	
+// }
 
 void	draw_cub_3d(t_vars *vars, t_point p1, t_point p2, int color)
 {
