@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 20:42:32 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:37:42 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 		draw_x += dst_x;
 		i++;
 	}
-	vars->rays_point.dis =  sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y));
+	vars->rays_point.dis =  sqrt(pow((end_x - p1.x), 2) + pow((end_y - p1.y), 2));
 }
 
 void	draw_walls_3d(t_vars __unused *vars, int __unused rays, float dis)
