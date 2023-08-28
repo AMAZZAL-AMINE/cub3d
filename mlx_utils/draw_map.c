@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 19:02:08 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:03:38 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ void	put_player_pixel(t_vars *vars)
 void	put_pxl(t_vars *vars)
 {
 	dir.y = 0;
-	// draw_ceil(vars);
-	// draw_floor(vars);
+	draw_ceil(vars);
+	draw_floor(vars);
 	while (vars->map[(int)dir.y])
 	{
 		dir.x = 0;
