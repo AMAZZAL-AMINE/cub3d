@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 18:18:13 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:13:14 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,5 @@ void	ft_move(t_vars *vars);
 void	mlx_init_func(t_vars *vars, t_data *data);
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
-
+void	put_pxl_mini_map(t_vars *vars);
 #endif

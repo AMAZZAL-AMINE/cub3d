@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 19:03:38 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:21:27 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,6 @@ void	draw_cub_3d(t_vars *vars, t_point p1, t_point p2, int color)
 	}
 }
 
-void	draw_player(t_vars *vars, int color)
-{
-	int	radius;
-	int	x;
-	int	y;
-
-	radius = 10;
-	x = -radius;
-	while (x < radius)
-	{
-		y = -radius;
-		while (y < radius)
-		{
-			if ((x * x) + (y * y) < (radius * radius))
-				my_mlx_pixel_put(vars, (dir.x * vars->win_size + x) / ZOOM, (dir.y * vars->win_size + y) / ZOOM, color);
-			y++;
-		}
-		x++;
-	}
-}
 
 void	draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 {
@@ -113,7 +93,6 @@ void	draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 			end_y = draw_y;
 			break;
 		}
-		my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 0, 0));
 		draw_y += dst_y;
 		draw_x += dst_x;
 		i++;
@@ -164,8 +143,6 @@ void steps_line_player(t_point p1, t_point p2, t_vars *vars)
 
 void	put_player_pixel(t_vars *vars)
 {
-	float	tmp_x;
-	float	tmp_y;
 	t_point p1;
 	t_point p2;
 
@@ -174,50 +151,13 @@ void	put_player_pixel(t_vars *vars)
 	p2.x = p1.x + (cos(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 	p2.y = p1.y + (sin(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 	vars->p1 = p1;
-	//draw  player derection ras
-	while (vars->map[(int)dir.y])
-	{
-		dir.x = 0;
-		while (vars->map[(int)dir.y][(int)dir.x])
-		{
-			if (vars->map[(int)dir.y][(int)dir.x] == 'N' || vars->map[(int)dir.y][(int)dir.x] == 'E' \
-				|| vars->map[(int)dir.y][(int)dir.x] == 'W' || vars->map[(int)dir.y][(int)dir.x] == 'S')
-			{
-				tmp_x = dir.x;
-				tmp_y = dir.y;
-				draw (vars, create_trgb(255, 255, 255));
-				dir.x = vars->p_pos_x;
-				dir.y = vars->p_pos_y;
-				draw_player (vars, create_trgb(0,0,0));
-				dir.x = tmp_x;
-				dir.y = tmp_y;
-			}
-			dir.x++;
-		}
-		dir.y++;
-	}
 	steps_line_player(p1, p2, vars);
 }
 
 void	put_pxl(t_vars *vars)
 {
-	dir.y = 0;
-	draw_ceil(vars);
-	draw_floor(vars);
-	while (vars->map[(int)dir.y])
-	{
-		dir.x = 0;
-		while (vars->map[(int)dir.y][(int)dir.x])
-		{
-			if (vars->map[(int)dir.y][(int)dir.x] == '1')
-				draw (vars, create_trgb(140, 136, 247));
-			else if (vars->map[(int)dir.y][(int)dir.x] == '0')
-				draw (vars, create_trgb(255, 255, 255));
-			dir.x++;
-		}
-		dir.y++;
-	}
 	dir.x = 0;
 	dir.y = 0;
 	put_player_pixel(vars);
+	put_pxl_mini_map(vars);
 }
