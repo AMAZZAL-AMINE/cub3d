@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 16:28:02 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:14:26 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,13 @@ void	draw_player(t_vars *vars, int color)
 
 float	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 {
-	float draw_x;
-	float draw_y;
-	float end_x;
-	float end_y;
-	
+	float	draw_x;
+	float	draw_y;
+	float	end_x;
+	float	end_y;
+	float	steps;
 	float dst_x; //destance x
 	float dst_y; //destance y
-
-	float	steps; 
 
 	dst_x = p2.x - p1.x; 
 	dst_y = p2.y - p1.y;
@@ -120,31 +118,27 @@ float	draw_player_line_derection(t_point p1, t_point p2, t_vars *vars)
 		draw_x += dst_x;
 		i++;
 	}
-	printf("%f\n", sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y)));
 	return (float)(sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y)));
 }
 
 void	draw_walls_3d(t_vars __unused *vars, int __unused rays, float dis)
 {
-	t_point __unused p1;
-	t_point __unused p2;
-	float 					tail;
-	float						tall;
-	printf("c = %f\n", dis);
-	tail = vars->dis.w / (vars->fov * 10) ;
+	t_point __unused	p1;
+	t_point __unused	p2;
+	float 			tail;
+	float			tall;
+	tail = vars->dis.w / (vars->fov * 10);
 	p1.x = rays * tail;
 	p2.x = p1.x + tail;
-
-	tall  = (vars->dis.h * vars->win_size) / dis;
+	tall = (vars->dis.h * vars->win_size) / dis;
 	p1.y = (vars->dis.h / 2) - tall;
-	if (p1.y < 0) {
+	if (p1.y < 0)
 		p1.y = 0;
-	}
 	p2.y = (vars->dis.h / 2) + tall;
-	if (p2.y > vars->dis.h) {
-		p2.y = vars->dis.h;
-	}
-	draw_cub_3d(vars, p1, p2, create_trgb(153,255,51));
+	if (p2.y >= vars->dis.h)
+		p2.y = vars->dis.h - 1;
+	printf("y1 = %f, y2 = %f\n", p1.y , p2.y);
+	draw_cub_3d(vars, p1, p2, create_trgb(72, 35, 32));
 }
 
 void steps_line_player(t_point p1, t_point p2, t_vars *vars)
@@ -161,7 +155,7 @@ void steps_line_player(t_point p1, t_point p2, t_vars *vars)
 		p1.y = vars->p_pos_y * vars->win_size;
 		p2.x = p1.x + (cos(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 		p2.y = p1.y + (sin(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
-		float dis = draw_player_line_derection(p1, p2, vars);
+		float __unused dis = draw_player_line_derection(p1, p2, vars);
 		draw_walls_3d(vars, rays, dis);
 		eng += 0.1;
 		rays++;
@@ -181,7 +175,6 @@ void	put_player_pixel(t_vars *vars)
 	p2.x = p1.x + (cos(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 	p2.y = p1.y + (sin(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
 	vars->p1 = p1;
-
 	//draw  player derection ras
 	while (vars->map[(int)dir.y])
 	{
