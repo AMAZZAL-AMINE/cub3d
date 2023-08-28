@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/27 15:19:14 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:03:43 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <math.h>
 
 # define MOVE_SPEED 0.1
-# define ROTATE_SPEED 2
+# define ROTATE_SPEED 5
 #define RADIAN 0.0174533
 #define PI 3.14
 
@@ -98,6 +98,13 @@ typedef struct t_point
 	float	y;
 } t_point;
 
+typedef struct t_rays_point
+{
+	float x;
+	float y;
+	float dis;
+} t_rays_point;
+
 typedef struct s_vars
 {
 	float	p_pos_x;
@@ -107,6 +114,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	t_pixle	*img;
+	t_rays_point rays_point;
 	t_dis	dis;
 	t_point p1;
 	char	*add;
