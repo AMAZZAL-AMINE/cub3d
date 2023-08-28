@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 15:49:35 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:18:13 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ int		is_it_rgb(char c1, t_pars *pars, char **map);
 char	**duplcate_map(char **oldmap);
 void	print_map(t_data *data, char **map);
 void ft_move(t_vars *vars);
+void	draw_floor(t_vars *vars);
+void	draw_ceil(t_vars *vars);
 // check MAP
 int		check_south(char **sorth);
 void	check_nswe(t_data *data);

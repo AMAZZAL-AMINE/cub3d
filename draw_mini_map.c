@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 19:02:08 by mamazzal         ###   ########.fr       */
+/*   Created: 2023/08/28 18:15:07 by mamazzal          #+#    #+#             */
+/*   Updated: 2023/08/28 18:15:30 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "cub3D.h"
+
+void	draw_floor(t_vars *vars)
+{
+	int count = 0;
+	while (count < vars->dis.h / 2) {
+		int index = 0;
+		while (index < vars->dis.w) {
+			my_mlx_pixel_put(vars, index, count, create_trgb(20, 126, 42));
+			index++;
+		}
+		count++;
+	}
+}
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
@@ -202,8 +215,7 @@ void	put_player_pixel(t_vars *vars)
 void	put_pxl(t_vars *vars)
 {
 	dir.y = 0;
-	// draw_ceil(vars);
-	// draw_floor(vars);
+	draw_floor(vars);
 	while (vars->map[(int)dir.y])
 	{
 		dir.x = 0;
