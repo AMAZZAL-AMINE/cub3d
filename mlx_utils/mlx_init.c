@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 20:10:13 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:02:21 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
 	vars->win_size = 50;
-	vars->dis.w = 960;//count_biggest_line(data->map) * vars->win_size;
-	vars->dis.h = 550;//f_strlen(data->map) * vars->win_size;
+	vars->dis.w = 960;
+	vars->dis.h = 550;
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \
 		vars->dis.h, "33-34 hakma l3alam");
 	vars->img->img = mlx_new_image(vars->mlx, vars->dis.w, vars->dis.h);
