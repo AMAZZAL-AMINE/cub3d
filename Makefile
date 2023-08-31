@@ -6,7 +6,7 @@
 #    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/08/28 20:02:55 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/08/30 15:23:43 by mamazzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,11 @@ CFLAGS= -Wall -Wextra -Werror  -fsanitize=address -g -Ofast -O3
 
 all: $(NAME)
 
+run :
+	make re && ./cub3D maps/map.cub
+
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(GNLN) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJ) $(GNLN)  -o $(NAME)
 	@echo "\033[32m[ ✔ ] cub3D"
 
 clean:

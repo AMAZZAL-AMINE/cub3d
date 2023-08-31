@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/28 22:37:42 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:56:04 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ void	draw(t_vars *vars, int __unused color)
 		i++;
 	}
 }
-
-// void draw_img_pixel()
-// {
-	
-// }
 
 void	draw_cub_3d(t_vars *vars, t_point p1, t_point p2, int color)
 {
@@ -102,37 +97,51 @@ void	draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 		draw_x += dst_x;
 		i++;
 	}
-	vars->rays_point.dis =  sqrt(pow((end_x - p1.x), 2) + pow((end_y - p1.y), 2));
+	vars->rays_point.dis = sqrtf(powf((end_x - p1.x), 2) + powf((end_y - p1.y), 2));
+}
+int	gety_pix_from_img(t_vars *vars, int x, int y)
+{
+	char	*dst;
+	int		offset;
+
+	offset = ((y * vars->img_pix->line_length) + \
+		(x * (vars->img_pix->bits_per_pixel / 8)));
+	dst = vars->img_pix->addr + offset;
+	return *(unsigned int *)dst;
 }
 
-void	draw_walls_3d(t_vars __unused *vars, int __unused rays, float dis)
+void draw_walls_3d(t_vars *vars, int rays, float dis)
 {
-	t_point __unused	p1;
-	t_point __unused	p2;
-	float 			tail;
-	float			tall;
-	tail = vars->dis.w / (vars->fov * 10);
-	p1.x = rays * tail;
-	p2.x = p1.x + tail;
-	tall = (vars->dis.h * vars->win_size) / dis;
-	p1.y = (vars->dis.h / 2) - tall;
-	if (p1.y < 0)
-		p1.y = 0;
-	p2.y = (vars->dis.h / 2) + tall;
-	if (p2.y >= vars->dis.h)
-		p2.y = vars->dis.h - 1;
-	draw_cub_3d(vars, p1, p2, create_trgb(72, 35, 32));
+    t_point p1, p2;
+    float tail, tall;
+    
+    tail = vars->dis.w / (vars->fov * 10);
+    p1.x = rays * tail;
+    p2.x = p1.x + tail;
+    
+    tall = (vars->dis.h * vars->win_size) / dis;
+    p1.y = (vars->dis.h / 2) - tall;
+    if (p1.y < 0)
+        p1.y = 0;
+    p2.y = (vars->dis.h / 2) + tall;
+    if (p2.y >= vars->dis.h)
+        p2.y = vars->dis.h - 1;
+    
+    int img_x = (int)(p2.x / vars->dis.w * 1024);
+    int img_y = (int)(p2.y / vars->dis.h * 1024);
+
+    unsigned int pixel_color = gety_pix_from_img(vars, img_y, img_x);
+    draw_cub_3d(vars, p1, p2, pixel_color);
 }
 
 void steps_line_player(t_point p1, t_point p2, t_vars *vars)
 {
 	float eng;
 	int		rays;
-	
-	vars->fov = 60;
+
 	eng = vars->p_rotat - (vars->fov / 2);
 	rays = 0;
-	while(eng <= vars->p_rotat + (vars->fov / 2))
+	while(eng < vars->p_rotat + (vars->fov / 2))
 	{
 		p1.x = vars->p_pos_x * vars->win_size;
 		p1.y = vars->p_pos_y * vars->win_size;

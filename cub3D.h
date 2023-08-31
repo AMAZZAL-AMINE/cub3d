@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 20:27:13 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:22:05 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "./gnln/get_next_line.h"
 #include <math.h>
 
-# define MOVE_SPEED 0.3
-# define ROTATE_SPEED 5
+# define MOVE_SPEED 0.5
+# define ROTATE_SPEED 8
 #define RADIAN 0.0174533
 #define PI 3.14
 #define ZOOM 8
@@ -115,6 +115,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	t_pixle	*img;
+	t_pixle	*img_pix;
 	t_rays_point rays_point;
 	t_dis	dis;
 	t_point p1;
@@ -122,6 +123,7 @@ typedef struct s_vars
 	int		key;
 	int	win_size;
 	float fov;
+
 }				t_vars;
 /*END MLX UTILIS STRUCTER*/
 
