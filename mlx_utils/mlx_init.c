@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/01 18:43:19 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/01 20:55:08 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->img_pix->img = gm;
 	vars->img_pix->addr = mlx_get_data_addr(vars->img_pix->img, &vars->img_pix->bits_per_pixel, &vars->img_pix->line_length, &vars->img_pix->endian);
 	vars->fov = 60;
-	printf("LINAE LENGTH => %d\nENDIAN => %d\n", vars->img_pix->line_length, vars->img_pix->endian);
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \
 		vars->dis.h, "33-34 hakma l3alam");
 	vars->img->img = mlx_new_image(vars->mlx, vars->dis.w, vars->dis.h);
