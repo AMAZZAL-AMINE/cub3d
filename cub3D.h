@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/01 00:01:59 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/01 17:09:28 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 #define RADIAN 0.0174533
 #define PI 3.14
 #define ZOOM 8
+
+#define IMAGE_WIDTH 1024
+#define IMAGE_HEIGHT 1024
 
 
 /*PAESING STRUCTER*/

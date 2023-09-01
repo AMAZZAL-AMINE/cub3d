@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/01 17:03:50 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/01 17:10:00 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
     {
         x2 = 0;
         x = p1.x;
-        pos_txtr_y = ((pos_tile_y + y2) * (200 / tall));
+        pos_txtr_y = ((y2 + pos_tile_y) * (200 / tall));
         while (x < p2.x)
         {
 			// printf("txtr x = %f , y = %f\n", pos_txtr_x , pos_txtr_y);
