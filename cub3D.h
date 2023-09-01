@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/01 17:09:28 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/01 18:53:07 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 #define PI 3.14
 #define ZOOM 8
 
-#define IMAGE_WIDTH 1024
-#define IMAGE_HEIGHT 1024
+#define IMAGE_WIDTH 500
+#define IMAGE_HEIGHT 500
 
 
 /*PAESING STRUCTER*/
@@ -109,6 +109,12 @@ typedef struct t_rays_point
 	float dis;
 } t_rays_point;
 
+typedef struct t_img_size
+{
+	float w;
+	float h;
+} t_img_size;
+
 typedef struct s_vars
 {
 	float	p_pos_x;
@@ -128,7 +134,7 @@ typedef struct s_vars
 	float fov;
 	float	end_x;
 	float	end_y;
-
+	t_img_size img_size;
 }				t_vars;
 /*END MLX UTILIS STRUCTER*/
 

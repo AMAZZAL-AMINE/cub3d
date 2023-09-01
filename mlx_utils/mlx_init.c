@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/01 00:59:39 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/01 18:43:19 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->dis.w = 960;
 	vars->dis.h = 550;
 		int __unused w,h;
-	char __unused *img = "./txtr/rouali.xpm";
-	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img, &w, &h);
+	char __unused *img1 = "./txtr/rouali.xpm";
+	char __unused *img2 = "./txtr/gg.xpm";
+	char __unused *img3 = "./txtr/taroualit.xpm";
+	char __unused *img4 = "./txtr/rouali.xpm";
+	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img2, &w, &h);
 	if (!gm) { 
 		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
 		exit(0);
