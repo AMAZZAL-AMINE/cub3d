@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/01 21:46:40 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:31:27 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int gety_pix_from_img(t_vars *vars, int x, int y)
 	return *(unsigned int *)dst;
 }
 
-void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __unused float tail)
+void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 {
 	float x, y;
 	float x2, y2;
@@ -61,12 +61,11 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
 
 	y = p1.y;
 	y2 = 0;
-	if (tall > vars->img_size.h / 2)
-		y2 = (tall - (vars->img_size.h / 2)) / 2;
-	printf("YYY %f \n", tall);
+	if (tall - (vars->win_size / 2) > vars->img_size.h / 2)
+		y2 = ((tall - (vars->win_size / 2)) - (vars->img_size.h / 2));
+	printf("YYY %f \n", y2);
 	pos_tile_y = vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size;
 	pos_tile_x = vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size;
-	printf("YYY %f | XX %f\n", pos_tile_y, pos_tile_x);
 	if (pos_tile_y >= 48)
 		pos_txtr_x = ((pos_tile_x) * (vars->img_size.w / vars->win_size));
 	if (pos_tile_y < 2)
@@ -145,7 +144,7 @@ void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 	p2.y = (vars->dis.h / 2) + tall;
 	if (p2.y >= vars->dis.h)
 		p2.y = vars->dis.h - 1;
-	draw_cub_3d(vars, p1, p2, tall, tail);
+	draw_cub_3d(vars, p1, p2, tall);
 }
 
 void steps_line_player(t_point p1, t_point p2, t_vars *vars)
