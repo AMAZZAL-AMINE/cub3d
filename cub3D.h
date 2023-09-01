@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/30 15:22:05 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/01 01:49:59 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 #define RADIAN 0.0174533
 #define PI 3.14
 #define ZOOM 8
+
+#define IMAGE_WIDTH 1024
+#define IMAGE_HEIGHT 1024
 
 
 /*PAESING STRUCTER*/
