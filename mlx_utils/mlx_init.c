@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/08/30 15:54:17 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/01 00:59:39 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->dis.w = 960;
 	vars->dis.h = 550;
 		int __unused w,h;
-	char __unused *img = "./txtr/taroualit.xpm";
+	char __unused *img = "./txtr/rouali.xpm";
 	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img, &w, &h);
 	if (!gm) { 
 		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
