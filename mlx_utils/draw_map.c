@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/02 14:26:18 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:10:35 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,6 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	while (i < steps)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
-		{
-			vars->end_x = draw_x + 1;
-			vars->end_y = draw_y - 1;
-			break;
-		}
-		int x = (int)(draw_x / vars->win_size);
-		int y = (int)(draw_y / vars->win_size);
-		if (((vars->map[y][x + 1] && vars->map[y][x + 1] == '1') && (vars->map[y + 1][x] && vars->map[y + 1][x] == '1')) \
-			|| ((vars->map[y][x - 1] && vars->map[y][x + 1] == '1') && (vars->map[y - 1][x] && vars->map[y + 1][x] == '1')))
 		{
 			vars->end_x = draw_x + 1;
 			vars->end_y = draw_y - 1;

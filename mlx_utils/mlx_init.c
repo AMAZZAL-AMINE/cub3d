@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/02 14:15:14 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:49:34 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
 		exit(0);
 	}
+	vars->img_size.w = w;
+	vars->img_size.h = h;
 	vars->img_pix->img = gm;
 	vars->img_pix->addr = mlx_get_data_addr(vars->img_pix->img, &vars->img_pix->bits_per_pixel, &vars->img_pix->line_length, &vars->img_pix->endian);
 	vars->fov = 60;
