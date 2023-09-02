@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/01 18:49:08 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/02 14:05:59 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	main(int __unused argc, char __unused **argv)
 	check_nswe(data);
 	check_rgb(data);
 	vars = malloc(sizeof(t_vars));
-	vars->img_size.w = 500;
-	vars->img_size.h = 500;
+	vars->img_size.w = IMAGE_WIDTH;
+	vars->img_size.h = IMAGE_HEIGHT;
 	vars->p_rotat = 0;
 	rotate_type = get_direction_type(data->map);
 	if (rotate_type == 'S')

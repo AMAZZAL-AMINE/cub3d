@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:15:07 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/28 20:07:03 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:26:27 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ void	draw_player_line_ray_mini_map(t_point p1, t_point p2, t_vars *vars)
 					 || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)]) {
 			end_x = draw_x;
 			end_y = draw_y;
+			break;
+		}
+			int x = (int)(draw_x / vars->win_size);
+		int y = (int)(draw_y / vars->win_size);
+		if (((vars->map[y][x + 1] && vars->map[y][x + 1] == '1') && (vars->map[y + 1][x] && vars->map[y + 1][x] == '1')) \
+			|| ((vars->map[y][x - 1] && vars->map[y][x + 1] == '1') && (vars->map[y - 1][x] && vars->map[y + 1][x] == '1')))
+		{
+			vars->end_x = draw_x + 1;
+			vars->end_y = draw_y - 1;
 			break;
 		}
 		my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 0, 0));

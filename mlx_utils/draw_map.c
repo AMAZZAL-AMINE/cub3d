@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/01 22:31:27 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:26:18 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 		pos_txtr_y = ((y2) * ((vars->img_size.h / 2) / tall));
 		while (x < p2.x)
 		{
-			if (pos_txtr_x < vars->img_size.h && pos_txtr_y < vars->img_size.h)
+			if (pos_txtr_x < vars->img_size.w && pos_txtr_y < vars->img_size.h)
 				my_mlx_pixel_put(vars, x, y, gety_pix_from_img(vars, pos_txtr_x, pos_txtr_y));
 			x2++;
 			x++;
@@ -115,6 +115,15 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	while (i < steps)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
+		{
+			vars->end_x = draw_x + 1;
+			vars->end_y = draw_y - 1;
+			break;
+		}
+		int x = (int)(draw_x / vars->win_size);
+		int y = (int)(draw_y / vars->win_size);
+		if (((vars->map[y][x + 1] && vars->map[y][x + 1] == '1') && (vars->map[y + 1][x] && vars->map[y + 1][x] == '1')) \
+			|| ((vars->map[y][x - 1] && vars->map[y][x + 1] == '1') && (vars->map[y - 1][x] && vars->map[y + 1][x] == '1')))
 		{
 			vars->end_x = draw_x + 1;
 			vars->end_y = draw_y - 1;
