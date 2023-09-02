@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/02 18:10:35 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 20:05:25 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,9 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 	float pos_txtr_x, pos_txtr_y;
 
 	y = p1.y;
-	y2 = 0;
-	if (tall - (vars->win_size / 2) > vars->img_size.h / 2)
-		y2 = ((tall - (vars->win_size / 2)) - (vars->img_size.h / 2));
-	printf("YYY %f \n", y2);
+	y2 =  0;
+	if (tall > vars->dis.h / 2)
+		y2 = tall - (vars->dis.h / 2);
 	pos_tile_y = vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size;
 	pos_tile_x = vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size;
 	if (pos_tile_y >= 48)

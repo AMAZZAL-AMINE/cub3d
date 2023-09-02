@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/02 18:48:26 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/02 19:40:49 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ROTATE_SPEED 8
 #define RADIAN 0.0174533
 #define PI 3.14
-#define ZOOM 3
+#define ZOOM 8
 
 
 
