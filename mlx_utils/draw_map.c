@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/02 20:05:25 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:44:55 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,16 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 		{
 			vars->end_x = draw_x + 1;
 			vars->end_y = draw_y - 1;
+			break;
+		}
+		float x = (draw_x + 1) / vars->win_size;
+		float y = (draw_y + 1) / vars->win_size;
+		if (vars->map[(int)y][(int)draw_x / vars->win_size] && \
+			((vars->map[(int)y][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1') || \
+			(vars->map[(int)y - 1][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1')))
+		{
+			vars->end_x = draw_x;
+			vars->end_y = draw_y;
 			break;
 		}
 		draw_y += dst_y;

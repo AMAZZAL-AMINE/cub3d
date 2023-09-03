@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/02 20:31:50 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:49:45 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->dis.h = 550;
 		int __unused w,h;
 	char __unused *img1 = "./txtr/rouali.xpm";
-	char __unused *img2 = "./txtr/gg.xpm";
+	char __unused *img2 = "./txtr/wall.xpm";
 	char __unused *img3 = "./txtr/taroualit.xpm";
 	char __unused *img4 = "./txtr/rouali.xpm";
 	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img2, &w, &h);

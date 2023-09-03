@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:15:07 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/02 18:10:29 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:45:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,30 @@ void	draw_player_line_ray_mini_map(t_point p1, t_point p2, t_vars *vars)
 	while (i < steps)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 \
-				&& (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' \
-					|| vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' '))
-					 || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)]) {
-			end_x = draw_x;
-			end_y = draw_y;
+			&& (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' \
+			|| vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' '))
+			|| !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
+		{
+			vars->end_x = draw_x;
+			vars->end_y = draw_y;
 			break;
 		}
-		my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 0, 0));
+		float x = (draw_x + 1) / vars->win_size;
+		float y = (draw_y + 1) / vars->win_size;
+		if (vars->map[(int)y][(int)draw_x / vars->win_size] && \
+			((vars->map[(int)y][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1') || \
+			(vars->map[(int)y - 1][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1')))
+		{
+			vars->end_x = draw_x;
+			vars->end_y = draw_y;
+			break;
+		}
+		my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 255, 0));
 		draw_y += dst_y;
 		draw_x += dst_x;
 		i++;
 	}
-	vars->rays_point.dis =  sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y));
+	vars->rays_point.dis =  sqrt((p1.x - end_x) * (p1.x - end_x) + (p1.y - end_y) * (p1.y - end_y)) + vars->win_size;
 }
 
 void	draw_walls_3d_mini_map(t_vars __unused *vars, int __unused rays, float dis)
@@ -136,7 +147,7 @@ void	put_player_pixel_mini_map(t_vars *vars)
 			{
 				tmp_x = dir.x;
 				tmp_y = dir.y;
-				draw (vars, create_trgb(255, 255, 255));
+				draw (vars, create_trgb(119,136,153));
 				dir.x = vars->p_pos_x;
 				dir.y = vars->p_pos_y;
 				draw_player (vars, create_trgb(0,0,0));
@@ -159,9 +170,9 @@ void	put_pxl_mini_map(t_vars *vars)
 		while (vars->map[(int)dir.y][(int)dir.x])
 		{
 			if (vars->map[(int)dir.y][(int)dir.x] == '1')
-				draw (vars, create_trgb(140, 136, 247));
+				draw (vars, create_trgb(0,0,0));
 			else if (vars->map[(int)dir.y][(int)dir.x] == '0')
-				draw (vars, create_trgb(255, 255, 255));
+				draw (vars, create_trgb(119,136,153)); 
 			dir.x++;
 		}
 		dir.y++;
