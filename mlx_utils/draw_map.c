@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/04 19:32:50 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/04 20:40:05 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,22 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 	pos_tile_y = (vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size);
 	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size);
 	printf("x = %f , y = %f\n", pos_tile_x, pos_tile_y);
+	if (pos_tile_x >= 49.03) {
+		img = vars->img_pix2;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
+	if (pos_tile_x < 1) {
+		img = vars->img_pix3;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
+	if (pos_tile_y < 1) {
+		img = vars->img_pix1;
+		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
+	}
 	if (pos_tile_y >= 49.0)
 	{
 		img = vars->img_pix;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
-	}
-	else if (pos_tile_y < 1.1) {
-		img = vars->img_pix1;
-		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
-	}
-	else if (pos_tile_x >= 49.0) {
-		img = vars->img_pix2;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
-	}
-	else if (pos_tile_x < 1.1) {
-		img = vars->img_pix3;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
 	}
 	if (pos_tile_y < 0)
 		pos_tile_y = 0;
@@ -132,8 +132,8 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
 		{
-			vars->end_x = draw_x;
-			vars->end_y = draw_y;
+			vars->end_x = draw_x - dst_x;
+			vars->end_y = draw_y - dst_y;
 			break;
 		}
 		float x = (draw_x + 1) / vars->win_size;
