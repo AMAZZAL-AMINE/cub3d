@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/03 15:49:45 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/04 18:49:30 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,56 @@ int	count_biggest_line(char **map)
 	return size;
 }
 
+void init_textrs(t_vars *vars)
+{
+	int __unused w,h,w2,h2,w3,h3,w4,h4;
+	char __unused *img1 = "./txtr/rouali.xpm";
+	char __unused *img2 = "./txtr/f.xpm";
+	char __unused *img3 = "./txtr/taroualit.xpm";
+	char __unused *img4 = "./txtr/gg.xpm";
+	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img1, &w, &h);
+	void __unused *gm2 = mlx_xpm_file_to_image(vars->mlx, img2, &w2, &h2);
+	void __unused *gm3 = mlx_xpm_file_to_image(vars->mlx, img3, &w3, &h3);
+	void __unused *gm4 = mlx_xpm_file_to_image(vars->mlx, img4, &w4, &h4);
+	vars->img_pix = malloc(sizeof(t_pixle));
+	vars->img_pix1 = malloc(sizeof(t_pixle));
+	vars->img_pix2 = malloc(sizeof(t_pixle));
+	vars->img_pix3 = malloc(sizeof(t_pixle));
+		if (!gm || !gm2 || !gm3 || !gm4) { 
+		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
+		exit(0);
+	}
+	vars->img_pix->w = w;
+	vars->img_pix->h = h;
+	vars->img_pix->img = gm;
+	vars->img_pix->addr = mlx_get_data_addr(vars->img_pix->img, &vars->img_pix->bits_per_pixel, &vars->img_pix->line_length, &vars->img_pix->endian);
+
+	vars->img_pix1->w = w2;
+	vars->img_pix1->h = h2;
+	vars->img_pix1->img = gm2;
+	vars->img_pix1->addr = mlx_get_data_addr(vars->img_pix1->img, &vars->img_pix1->bits_per_pixel, &vars->img_pix1->line_length, &vars->img_pix1->endian);
+
+	vars->img_pix2->w = w3;
+	vars->img_pix2->h = h3;
+	vars->img_pix2->img = gm3;
+	vars->img_pix2->addr = mlx_get_data_addr(vars->img_pix2->img, &vars->img_pix2->bits_per_pixel, &vars->img_pix2->line_length, &vars->img_pix2->endian);
+
+	vars->img_pix3->w = w4;
+	vars->img_pix3->h = h4;
+	vars->img_pix3->img = gm4;
+	vars->img_pix3->addr = mlx_get_data_addr(vars->img_pix3->img, &vars->img_pix3->bits_per_pixel, &vars->img_pix3->line_length, &vars->img_pix3->endian);
+}
+
 void	mlx_init_func(t_vars *vars, t_data *data)
 {
 	vars->map = data->map;
 	get_player_position(vars);
 	vars->img = malloc(sizeof(t_pixle));
-	vars->img_pix = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
 	vars->win_size = 50;
 	vars->dis.w = 960;
 	vars->dis.h = 550;
-		int __unused w,h;
-	char __unused *img1 = "./txtr/rouali.xpm";
-	char __unused *img2 = "./txtr/wall.xpm";
-	char __unused *img3 = "./txtr/taroualit.xpm";
-	char __unused *img4 = "./txtr/rouali.xpm";
-	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img2, &w, &h);
-	if (!gm) { 
-		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
-		exit(0);
-	}
-	vars->img_size.w = w;
-	vars->img_size.h = h;
-	vars->img_pix->img = gm;
-	vars->img_pix->addr = mlx_get_data_addr(vars->img_pix->img, &vars->img_pix->bits_per_pixel, &vars->img_pix->line_length, &vars->img_pix->endian);
+	init_textrs(vars);
 	vars->fov = 60;
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \
 		vars->dis.h, "33-34 hakma l3alam");

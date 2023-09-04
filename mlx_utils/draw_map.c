@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/03 18:44:55 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/04 19:32:50 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void draw(t_vars *vars, int __unused color)
 	}
 }
 
-int gety_pix_from_img(t_vars *vars, int x, int y)
+int gety_pix_from_img(t_pixle *img_pix, int x, int y)
 {
 	char *dst;
 	int offset;
 
-	offset = ((y * vars->img_pix->line_length) +
-						(x * (vars->img_pix->bits_per_pixel / 8)));
-	dst = vars->img_pix->addr + offset;
+	offset = ((y * img_pix->line_length) +
+						(x * (img_pix->bits_per_pixel / 8)));
+	dst = img_pix->addr + offset;
 	return *(unsigned int *)dst;
 }
 
@@ -58,30 +58,47 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 	float x2, y2;
 	float pos_tile_x, pos_tile_y;
 	float pos_txtr_x, pos_txtr_y;
+	t_pixle *img;
 
 	y = p1.y;
 	y2 =  0;
+	img = vars->img_pix;
 	if (tall > vars->dis.h / 2)
 		y2 = tall - (vars->dis.h / 2);
-	pos_tile_y = vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size;
-	pos_tile_x = vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size;
-	if (pos_tile_y >= 48)
-		pos_txtr_x = ((pos_tile_x) * (vars->img_size.w / vars->win_size));
-	if (pos_tile_y < 2)
-		pos_txtr_x = ((pos_tile_x) * (vars->img_size.w / vars->win_size));
-	if (pos_tile_x >= 48)
-		pos_txtr_x = ((pos_tile_y) * (vars->img_size.h / vars->win_size));
-	if (pos_tile_x < 2)
-		pos_txtr_x = ((pos_tile_y) * (vars->img_size.h / vars->win_size));
+	pos_tile_y = (vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size);
+	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size);
+	printf("x = %f , y = %f\n", pos_tile_x, pos_tile_y);
+	if (pos_tile_y >= 49.0)
+	{
+		img = vars->img_pix;
+		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
+	}
+	else if (pos_tile_y < 1.1) {
+		img = vars->img_pix1;
+		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
+	}
+	else if (pos_tile_x >= 49.0) {
+		img = vars->img_pix2;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
+	else if (pos_tile_x < 1.1) {
+		img = vars->img_pix3;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
+	if (pos_tile_y < 0)
+		pos_tile_y = 0;
+	if (pos_tile_x < 0)
+		pos_tile_x = 0;
 	while (y < p2.y)
 	{
 		x2 = 0;
 		x = p1.x;
-		pos_txtr_y = ((y2) * ((vars->img_size.h / 2) / tall));
+		pos_txtr_y = ((y2) * ((img->h / 2) / tall));
 		while (x < p2.x)
 		{
-			if (pos_txtr_x < vars->img_size.w && pos_txtr_y < vars->img_size.h)
-				my_mlx_pixel_put(vars, x, y, gety_pix_from_img(vars, pos_txtr_x, pos_txtr_y));
+			if (x < vars->dis.w 
+			&& pos_txtr_x < img->w && pos_txtr_y < img->h)
+				my_mlx_pixel_put(vars, x, y, gety_pix_from_img(img, pos_txtr_x, pos_txtr_y));
 			x2++;
 			x++;
 		}
@@ -115,8 +132,8 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
 		{
-			vars->end_x = draw_x + 1;
-			vars->end_y = draw_y - 1;
+			vars->end_x = draw_x;
+			vars->end_y = draw_y;
 			break;
 		}
 		float x = (draw_x + 1) / vars->win_size;
@@ -152,7 +169,7 @@ void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 		p1.y = 0;
 	p2.y = (vars->dis.h / 2) + tall;
 	if (p2.y >= vars->dis.h)
-		p2.y = vars->dis.h - 1;
+		p2.y = vars->dis.h;
 	draw_cub_3d(vars, p1, p2, tall);
 }
 

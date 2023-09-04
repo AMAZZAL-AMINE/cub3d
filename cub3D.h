@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/03 17:01:10 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/04 18:32:53 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-
+	float w;
+	float h;
 }	t_pixle;
 
 typedef struct s_display_win
@@ -107,11 +108,6 @@ typedef struct t_rays_point
 	float dis;
 } t_rays_point;
 
-typedef struct t_img_size
-{
-	float w;
-	float h;
-} t_img_size;
 
 typedef struct s_vars
 {
@@ -123,6 +119,9 @@ typedef struct s_vars
 	void	*win;
 	t_pixle	*img;
 	t_pixle	*img_pix;
+	t_pixle	*img_pix1;
+	t_pixle	*img_pix2;
+	t_pixle	*img_pix3;
 	t_rays_point rays_point;
 	t_dis	dis;
 	t_point p1;
@@ -132,7 +131,6 @@ typedef struct s_vars
 	float fov;
 	float	end_x;
 	float	end_y;
-	t_img_size img_size;
 }				t_vars;
 /*END MLX UTILIS STRUCTER*/
 
