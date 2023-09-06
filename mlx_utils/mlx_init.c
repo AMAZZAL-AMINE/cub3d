@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/04 18:49:30 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:33:26 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	count_biggest_line(char **map)
 void init_textrs(t_vars *vars)
 {
 	int __unused w,h,w2,h2,w3,h3,w4,h4;
-	char __unused *img1 = "./txtr/rouali.xpm";
-	char __unused *img2 = "./txtr/f.xpm";
-	char __unused *img3 = "./txtr/taroualit.xpm";
-	char __unused *img4 = "./txtr/gg.xpm";
+	char __unused *img1 = "./txtr/wall1.xpm";
+	char __unused *img2 = "./txtr/wall2.xpm";
+	char __unused *img3 = "./txtr/wall3.xpm";
+	char __unused *img4 = "./txtr/wall5.xpm";
 	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img1, &w, &h);
 	void __unused *gm2 = mlx_xpm_file_to_image(vars->mlx, img2, &w2, &h2);
 	void __unused *gm3 = mlx_xpm_file_to_image(vars->mlx, img3, &w3, &h3);
@@ -102,8 +102,8 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
 	vars->win_size = 50;
-	vars->dis.w = 960;
-	vars->dis.h = 550;
+	vars->dis.w = 1560;
+	vars->dis.h = 1050;
 	init_textrs(vars);
 	vars->fov = 60;
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \
