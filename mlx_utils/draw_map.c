@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/07 13:39:36 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:56:38 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,21 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 		img = vars->img_pix2;
 		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
 	}
+	else if (pos_tile_x < 0.1) {
+		img = vars->img_pix3;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
 	else if (pos_tile_y >= 49.9)
 	{
 		img = vars->img_pix;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
 	}
-	else if (pos_tile_x < 0.1) {
-		img = vars->img_pix3;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
-	}
 	else if (pos_tile_y <= 0.1) {
 		img = vars->img_pix1;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
-		printf("DDDDD = %f\n", pos_txtr_x);
 	}
 	if (pos_tile_y < 0)
 		pos_tile_y = 0;
-	if (pos_tile_x < 0)
-		pos_tile_x = 0;
 	while (y < p2.y)
 	{
 		x2 = 0;
@@ -133,20 +130,20 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	{
 		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
 		{
-			vars->end_x = (draw_x - dst_x);
-			vars->end_y = (draw_y - dst_y);
+			vars->end_x = (draw_x );
+			vars->end_y = (draw_y );
 			break;
 		}
-		// float x = (draw_x + 1) / vars->win_size;
-		// float y = (draw_y + 1) / vars->win_size;
-		// if (vars->map[(int)y][(int)draw_x / vars->win_size] && \
-		// 	((vars->map[(int)y][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1') || \
-		// 	(vars->map[(int)y - 1][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1')))
-		// {
-		// 	vars->end_x = draw_x + dst_x + 50;
-		// 	vars->end_y = draw_y + dst_y + 50;
-		// 	break;
-		// }
+		float x = (draw_x + 1) / vars->win_size;
+		float y = (draw_y + 1) / vars->win_size;
+		if (vars->map[(int)y][(int)draw_x / vars->win_size] && \
+			((vars->map[(int)y][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1') || \
+			(vars->map[(int)y - 1][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1')))
+		{
+			vars->end_x = draw_x + 1;
+			vars->end_y = draw_y + 1;
+			break;
+		}
 		draw_y += dst_y;
 		draw_x += dst_x;
 		i++;
