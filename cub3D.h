@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/06 20:09:41 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:26:23 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "./gnln/get_next_line.h"
 #include <math.h>
 
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 10
 # define ROTATE_SPEED 8
 #define RADIAN 0.0174533
 #define PI 3.14
-#define ZOOM 8
+#define ZOOM 2
 
 
 
@@ -89,11 +89,11 @@ typedef struct s_display_win
 	int	h;
 }	t_dis;
 
-struct s_direction
+typedef struct s_direction
 {
 	float	x;
 	float	y;
-} dir;
+} t_dir;
 
 typedef struct t_point
 {
@@ -108,6 +108,14 @@ typedef struct t_rays_point
 	float dis;
 } t_rays_point;
 
+typedef struct t_rays
+{
+	float pos_x;
+	float pos_y;
+	float step_x;
+	float step_y;
+	int count;
+} t_ray;
 
 typedef struct s_vars
 {
@@ -123,19 +131,26 @@ typedef struct s_vars
 	t_pixle	*img_pix2;
 	t_pixle	*img_pix3;
 	t_rays_point rays_point;
+	t_ray	ray;
 	t_dis	dis;
 	t_point p1;
 	char	*add;
 	int		key;
 	int	win_size;
 	float fov;
+	float	end_h_x;
+	float	end_h_y;
+	float	end_v_x;
+	float	end_v_y;
 	float	end_x;
 	float	end_y;
+	t_dir dir;
 }				t_vars;
 /*END MLX UTILIS STRUCTER*/
 
 /* ############### cub3D.c ############### */
 /* ############### ft_split.c ############### */
+int	count_biggest_line(char **map);
 int	create_trgb(int r, int g, int b);
 char	**ft_split(char const *s, char c);
 char	*ft_strndup(char const *str, size_t max);
@@ -188,4 +203,8 @@ void	mlx_init_func(t_vars *vars, t_data *data);
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	put_pxl_mini_map(t_vars *vars);
+
+void raycasting(t_vars *, float);
+void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars);
+int gety_pix_from_img(t_pixle *img_pix, int x, int y);
 #endif

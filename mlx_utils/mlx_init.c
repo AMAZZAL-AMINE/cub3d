@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/07 13:41:43 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:37:49 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	get_player_position(t_vars *vars)
 			if (vars->map[count][index] == 'N' || vars->map[count][index] == 'S' \
 				|| vars->map[count][index] == 'E' || vars->map[count][index] == 'W')
 			{
-				vars->p_pos_y = (int)count;
-				vars->p_pos_x = (int)index;
+				vars->p_pos_y = count * vars->win_size;
+				vars->p_pos_x = index * vars->win_size;
 				return ;
 			}
 			index++;
@@ -98,10 +98,10 @@ void init_textrs(t_vars *vars)
 void	mlx_init_func(t_vars *vars, t_data *data)
 {
 	vars->map = data->map;
+	vars->win_size = 50;
 	get_player_position(vars);
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
-	vars->win_size = 50;
 	vars->dis.w = 1560;
 	vars->dis.h = 1050;
 	init_textrs(vars);

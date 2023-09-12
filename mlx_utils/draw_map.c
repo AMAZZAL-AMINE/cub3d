@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/10 19:56:38 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:51:03 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void draw(t_vars *vars, int __unused color)
 		j = 0;
 		while (j < vars->win_size)
 		{
-			my_mlx_pixel_put(vars, (dir.x * vars->win_size + i) / ZOOM, (dir.y * vars->win_size + j) / ZOOM, color);
+			my_mlx_pixel_put(vars, (vars->dir.x * vars->win_size + i) / ZOOM, (vars->dir.y * vars->win_size + j) / ZOOM, color);
 			j++;
 		}
 		i++;
@@ -52,7 +52,7 @@ int gety_pix_from_img(t_pixle *img_pix, int x, int y)
 	return *(unsigned int *)dst;
 }
 
-void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
+void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __unused float eng)
 {
 	float x, y;
 	float x2, y2;
@@ -67,26 +67,29 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 		y2 = tall - (vars->dis.h / 2);
 	pos_tile_y = (vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size);
 	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size);
-	printf("x = %f , y = %f\n", pos_tile_x, pos_tile_y);
-	if (pos_tile_x >= 49.9) {
+	printf("[%f] x = %f , y = %f\n", eng, pos_tile_x, pos_tile_y);
+	if (pos_tile_x > 49.999) {
 		img = vars->img_pix2;
 		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
 	}
-	else if (pos_tile_x < 0.1) {
-		img = vars->img_pix3;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
-	}
-	else if (pos_tile_y >= 49.9)
+	else if (pos_tile_y > 49.999)
 	{
 		img = vars->img_pix;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
 	}
-	else if (pos_tile_y <= 0.1) {
+	else if (pos_tile_x < 0.001) {
+		img = vars->img_pix3;
+		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+	}
+	else if (pos_tile_y < 0.001) {
 		img = vars->img_pix1;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
+		// printf("DDDDD = %f\n", pos_txtr_x);
 	}
 	if (pos_tile_y < 0)
 		pos_tile_y = 0;
+	if (pos_tile_x < 0)
+		pos_tile_x = 0;
 	while (y < p2.y)
 	{
 		x2 = 0;
@@ -105,6 +108,111 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall)
 	}
 }
 
+int check_is_wall(t_vars *vars, float x, float y)
+{
+	if (y / vars->win_size <= f_strlen(vars->map) && y / vars->win_size >= 0 
+		&& x / vars->win_size <= ft_strlen(vars->map[(int)y / vars->win_size]) && x / vars->win_size >= 0
+		&& vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] != 0 
+		&& (vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] == '1' 
+		|| vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] == ' ' 
+		|| !vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)]))
+			return (1);
+	return (0);
+}
+void check_horizontal(t_vars *vars, float engl)
+{
+	//Horizontal
+	if (engl > 0 && engl < 180)
+	{
+		vars->ray.pos_y = ((int)vars->p_pos_y / vars->win_size) * vars->win_size + vars->win_size;
+		vars->ray.step_y = vars->win_size;
+	}
+	else if (engl > 180 && engl < 360)
+	{
+		vars->ray.pos_y = ((int)vars->p_pos_y / vars->win_size) * vars->win_size - 0.0005;
+		vars->ray.step_y = -(vars->win_size);
+	}
+	else
+		vars->ray.count = 0;
+	vars->ray.pos_x = (vars->ray.pos_y - vars->p_pos_y) / tanf(engl * (PI / 180)) + vars->p_pos_x;
+	vars->ray.step_x = vars->ray.step_y / tanf(engl * (PI / 180));
+	while (vars->ray.count)
+	{
+		if (check_is_wall(vars, vars->ray.pos_x, vars->ray.pos_y))
+			break ;
+		vars->ray.count--;
+		vars->ray.pos_x += vars->ray.step_x;
+		vars->ray.pos_y += vars->ray.step_y;
+	}
+	vars->end_h_x = vars->ray.pos_x;
+	vars->end_h_y = vars->ray.pos_y;
+}
+
+void check_vertical(t_vars *vars, float engl)
+{
+	//Vertical
+	if (engl < 90 || engl > 270)
+	{
+		vars->ray.pos_x = ((int)vars->p_pos_x / vars->win_size) * vars->win_size + vars->win_size;
+		vars->ray.step_x = vars->win_size;
+	}
+	else if (engl > 90 && engl < 270)
+	{
+		vars->ray.pos_x = ((int)vars->p_pos_x / vars->win_size) * vars->win_size - 0.0005;
+		vars->ray.step_x = -(vars->win_size);
+	}
+	else
+		vars->ray.count = 0;
+	vars->ray.pos_y = (vars->ray.pos_x - vars->p_pos_x) * tanf(engl * (PI / 180)) + vars->p_pos_y;
+	vars->ray.step_y = vars->ray.step_x * tanf(engl * (PI / 180));
+	while (vars->ray.count)
+	{
+		if (check_is_wall(vars, vars->ray.pos_x, vars->ray.pos_y))
+			break ;
+		vars->ray.count--;
+		vars->ray.pos_x += vars->ray.step_x;
+		vars->ray.pos_y += vars->ray.step_y;
+	}
+	vars->end_v_x = vars->ray.pos_x;
+	vars->end_v_y = vars->ray.pos_y;
+}
+
+void raycasting(t_vars *vars, float engl)
+{
+	float dis_hor;
+	float dis_vert;
+
+	vars->ray.pos_x = vars->p_pos_x;
+	vars->ray.pos_y = vars->p_pos_y;
+	vars->ray.step_x = 0;
+	vars->ray.step_y = 0;
+	vars->end_v_x = vars->dis.h * vars->dis.w;
+	vars->end_v_y = vars->dis.h * vars->dis.w;
+	vars->end_h_x = vars->dis.h * vars->dis.w;
+	vars->end_h_y = vars->dis.h * vars->dis.w;
+	
+	// printf("%f | x=%f , y=%f\n",engl, vars->p_pos_x, vars->p_pos_y);
+	vars->ray.count = count_biggest_line(vars->map) * f_strlen(vars->map);
+	check_horizontal(vars, engl);
+	dis_hor = sqrtf(powf((vars->end_h_x - vars->p_pos_x), 2) + powf((vars->end_h_y - vars->p_pos_y), 2));
+	vars->ray.count = count_biggest_line(vars->map) * f_strlen(vars->map);
+	check_vertical(vars, engl);
+	dis_vert = sqrtf(powf((vars->end_v_x - vars->p_pos_x), 2) + powf((vars->end_v_y - vars->p_pos_y), 2));
+	
+	if (dis_hor < dis_vert)
+	{
+		vars->rays_point.dis = dis_hor;
+		vars->end_x = vars->end_h_x;
+		vars->end_y = vars->end_h_y;
+	}
+	else
+	{
+		vars->rays_point.dis = dis_vert;
+		vars->end_x = vars->end_v_x;
+		vars->end_y = vars->end_v_y;
+	}
+}
+
 void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 {
 	float draw_x;
@@ -117,38 +225,21 @@ void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
 	dst_y = (p2.y - p1.y);
 	draw_x = p1.x;
 	draw_y = p1.y;
-	vars->end_x = 0;
-	vars->end_y = 0;
 	if (fabs(dst_y) > fabs(dst_x))
 		steps = fabs(dst_y);
 	else
 		steps = fabs(dst_x);
-	dst_x = (dst_x / steps) * 0.1;
-	dst_y = (dst_y / steps) * 0.1;
+	dst_x = (dst_x / steps);
+	dst_y = (dst_y / steps);
 	int i = 0;
 	while (i <= steps)
 	{
-		if ((vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] != 0 && (vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == '1' || vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)] == ' ')) || !vars->map[(int)(draw_y / vars->win_size)][(int)(draw_x / vars->win_size)])
-		{
-			vars->end_x = (draw_x );
-			vars->end_y = (draw_y );
-			break;
-		}
-		float x = (draw_x + 1) / vars->win_size;
-		float y = (draw_y + 1) / vars->win_size;
-		if (vars->map[(int)y][(int)draw_x / vars->win_size] && \
-			((vars->map[(int)y][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1') || \
-			(vars->map[(int)y - 1][(int)draw_x / vars->win_size] == '1' && vars->map[(int)draw_y / vars->win_size][(int)x] == '1')))
-		{
-			vars->end_x = draw_x + 1;
-			vars->end_y = draw_y + 1;
-			break;
-		}
+		if ( draw_x / ZOOM > 0 && draw_x / ZOOM < vars->dis.w && draw_y / ZOOM > 0 && draw_y / ZOOM < vars->dis.h)
+			my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 255, 0));
 		draw_y += dst_y;
 		draw_x += dst_x;
 		i++;
 	}
-	vars->rays_point.dis = sqrtf(powf((vars->end_x - p1.x), 2) + powf((vars->end_y - p1.y), 2));
 }
 
 void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
@@ -168,46 +259,44 @@ void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 	p2.y = (vars->dis.h / 2) + tall;
 	if (p2.y >= vars->dis.h)
 		p2.y = vars->dis.h;
-	draw_cub_3d(vars, p1, p2, tall);
+	draw_cub_3d(vars, p1, p2, tall, eng);
 }
 
-void steps_line_player(t_point p1, t_point p2, t_vars *vars)
+void rendring_rays(t_vars *vars)
 {
 	float eng;
 	int rays;
+	t_point p1;
+	t_point p2;
 
 	eng = vars->p_rotat - (vars->fov / 2);
+		if (eng > 360)
+			eng -= 360;
+		else if (eng < 0)
+			eng += 360;
 	rays = 0;
-	while (eng < vars->p_rotat + (vars->fov / 2))
+	while (rays < vars->dis.w / 2)
 	{
-		p1.x = vars->p_pos_x * vars->win_size;
-		p1.y = vars->p_pos_y * vars->win_size;
-		p2.x = p1.x + (cos(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
-		p2.y = p1.y + (sin(eng * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
+		raycasting(vars, eng);
+		p1.x = vars->p_pos_x;
+		p1.y = vars->p_pos_y;
+		p2.x = vars->end_x;
+		p2.y = vars->end_y;
 		draw_player_line_ray(p1, p2, vars);
 		draw_walls_3d(vars, rays, eng, vars->rays_point.dis);
 		eng += 0.1;
+		if (eng > 360)
+			eng -= 360;
+		else if (eng < 0)
+			eng += 360;
 		rays++;
 	}
 }
 
-void put_player_pixel(t_vars *vars)
-{
-	t_point p1;
-	t_point p2;
-
-	p1.x = vars->p_pos_x * vars->win_size;
-	p1.y = vars->p_pos_y * vars->win_size;
-	p2.x = p1.x + (cos(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
-	p2.y = p1.y + (sin(vars->p_rotat * (PI / 180)) * vars->win_size * (vars->dis.w + vars->dis.h));
-	vars->p1 = p1;
-	steps_line_player(p1, p2, vars);
-}
-
 void put_pxl(t_vars *vars)
 {
-	dir.x = 0;
-	dir.y = 0;
-	put_player_pixel(vars);
-	// put_pxl_mini_map(vars);
+	vars->dir.x = 0;
+	vars->dir.y = 0;
+	put_pxl_mini_map(vars);
+	rendring_rays(vars);
 }
