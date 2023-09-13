@@ -6,51 +6,11 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/13 11:21:02 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:27:27 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
-{
-	char *dst;
-	int offset;
-
-	offset = ((y * vars->img->line_length) +
-						(x * (vars->img->bits_per_pixel / 8)));
-	dst = vars->img->addr + offset;
-	*(unsigned int *)dst = color;
-}
-
-void draw(t_vars *vars, int __unused color)
-{
-	float i;
-	float j;
-
-	i = 0;
-	while (i < vars->win_size)
-	{
-		j = 0;
-		while (j < vars->win_size)
-		{
-			my_mlx_pixel_put(vars, (vars->dir.x * vars->win_size + i) / ZOOM, (vars->dir.y * vars->win_size + j) / ZOOM, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-int gety_pix_from_img(t_pixle *img_pix, int x, int y)
-{
-	char *dst;
-	int offset;
-
-	offset = ((y * img_pix->line_length) +
-						(x * (img_pix->bits_per_pixel / 8)));
-	dst = img_pix->addr + offset;
-	return *(unsigned int *)dst;
-}
 
 void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __unused float eng)
 {
@@ -83,7 +43,6 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
 	else if (pos_tile_y < 0.001) {
 		img = vars->img_pix1;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
-		// printf("DDDDD = %f\n", pos_txtr_x);
 	}
 	if (pos_tile_y < 0)
 		pos_tile_y = 0;
@@ -104,40 +63,6 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
 		}
 		y2++;
 		y++;
-	}
-}
-
-void raycasting(t_vars *vars, float engl)
-{
-	float dis_hor;
-	float dis_vert;
-
-	vars->ray.pos_x = vars->p_pos_x;
-	vars->ray.pos_y = vars->p_pos_y;
-	vars->ray.step_x = 0;
-	vars->ray.step_y = 0;
-	vars->end_v_x = vars->dis.h * vars->dis.w;
-	vars->end_v_y = vars->dis.h * vars->dis.w;
-	vars->end_h_x = vars->dis.h * vars->dis.w;
-	vars->end_h_y = vars->dis.h * vars->dis.w;
-
-	vars->ray.count = count_biggest_line(vars->map) * f_strlen(vars->map);
-	check_horizontal(vars, engl);
-	dis_hor = sqrtf(powf((vars->end_h_x - vars->p_pos_x), 2) + powf((vars->end_h_y - vars->p_pos_y), 2));
-	vars->ray.count = count_biggest_line(vars->map) * f_strlen(vars->map);
-	check_vertical(vars, engl);
-	dis_vert = sqrtf(powf((vars->end_v_x - vars->p_pos_x), 2) + powf((vars->end_v_y - vars->p_pos_y), 2));
-	if (dis_hor < dis_vert)
-	{
-		vars->rays_point.dis = dis_hor;
-		vars->end_x = vars->end_h_x;
-		vars->end_y = vars->end_h_y;
-	}
-	else
-	{
-		vars->rays_point.dis = dis_vert;
-		vars->end_x = vars->end_v_x;
-		vars->end_y = vars->end_v_y;
 	}
 }
 
@@ -225,5 +150,5 @@ void put_pxl(t_vars *vars)
 	vars->dir.x = 0;
 	vars->dir.y = 0;
 	rendring_rays(vars);
-	put_pxl_mini_map(vars);
+	// put_pxl_mini_map(vars);
 }

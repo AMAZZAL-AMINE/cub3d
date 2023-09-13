@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/12 23:30:55 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:34:15 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	count_biggest_line(char **map)
 void init_textrs(t_vars *vars)
 {
 	int __unused w,h,w2,h2,w3,h3,w4,h4;
-	char __unused *img1 = "./txtr/wall1.xpm";
-	char __unused *img2 = "./txtr/wall2.xpm";
-	char __unused *img3 = "./txtr/wall3.xpm";
-	char __unused *img4 = "./txtr/wall5.xpm";
+	char __unused *img1 = vars->pars_data->img->ea[1];
+	char __unused *img2 = vars->pars_data->img->no[1];
+	char __unused *img3 = vars->pars_data->img->so[1];
+	char __unused *img4 = vars->pars_data->img->we[1];
 	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img1, &w, &h);
 	void __unused *gm2 = mlx_xpm_file_to_image(vars->mlx, img2, &w2, &h2);
 	void __unused *gm3 = mlx_xpm_file_to_image(vars->mlx, img3, &w3, &h3);
@@ -97,15 +97,16 @@ void init_textrs(t_vars *vars)
 
 void	mlx_init_func(t_vars *vars, t_data *data)
 {
+	vars->pars_data = data;
 	vars->map = data->map;
 	vars->win_size = 50;
 	get_player_position(vars);
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
-	vars->dis.w = 1560;
-	vars->dis.h = 1050;
+	vars->dis.w = W_WIDTH;
+	vars->dis.h = W_HEIGHT;
 	init_textrs(vars);
-	vars->fov = 60;
+	vars->fov = FOV;
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \
 		vars->dis.h, "33-34 hakma l3alam");
 	vars->img->img = mlx_new_image(vars->mlx, vars->dis.w, vars->dis.h);

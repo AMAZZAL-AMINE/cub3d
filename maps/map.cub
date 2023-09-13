@@ -1,7 +1,7 @@
-WE ./path_to_the_west_texture         
-EA ./path_to_the_east_texture
-NO ./path_to_the_north_texturef
-SO ./pth_to_the_south_texture
+WE ./txtr/wall2.xpm
+EA ./txtr/wall2.xpm
+NO ./txtr/wall2.xpm
+SO ./txtr/wall2.xpm
 
 
 

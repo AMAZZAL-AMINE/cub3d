@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ceil_floor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 18:16:40 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/03 16:29:51 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/13 12:51:37 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_ceil(t_vars *vars)
 	while (count < vars->dis.h / 2) {
 		int index = 0;
 		while (index < vars->dis.w) {
-			my_mlx_pixel_put(vars, index, count, create_trgb(173,216,230));
+			my_mlx_pixel_put(vars, index, count, create_trgb(115,202,229));
 			index++;
 		}
 		count++;
@@ -31,7 +31,7 @@ void	draw_floor(t_vars *vars)
 	while (count < vars->dis.h) {
 		int index = 0;
 		while (index < vars->dis.w) {
-			my_mlx_pixel_put(vars, index, count, create_trgb(245,245,220));
+			my_mlx_pixel_put(vars, index, count, create_trgb(120,73,55));
 			index++;
 		}
 		count++;
