@@ -1,12 +1,12 @@
 WE ./txtr/wall2.xpm
-EA ./txtr/wall2.xpm
-NO ./txtr/wall2.xpm
-SO ./txtr/wall2.xpm
+EA ./txtr/last.xpm
+NO ./txtr/Capture.xpm
+SO ./txtr/lwst.xpm
 
 
 
 
-C 115,202,225
+C 0,202,225
 F 119,73,55
 
 
