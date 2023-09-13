@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/12 22:26:23 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/13 10:49:22 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ROTATE_SPEED 8
 #define RADIAN 0.0174533
 #define PI 3.14
-#define ZOOM 2
+#define ZOOM 8
 
 
 
@@ -150,6 +150,9 @@ typedef struct s_vars
 
 /* ############### cub3D.c ############### */
 /* ############### ft_split.c ############### */
+void check_horizontal(t_vars *vars, float engl);
+void check_vertical(t_vars *vars, float engl);
+int check_is_wall(t_vars *vars, float x, float y);
 int	count_biggest_line(char **map);
 int	create_trgb(int r, int g, int b);
 char	**ft_split(char const *s, char c);
