@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:29:49 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/12 19:53:47 by rouali           ###   ########.fr       */
+/*   Updated: 2023/09/14 11:32:21 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	move_down(t_vars *vars)
 
 	if (vars->key == 1 || vars->key == 125)
 	{
-		x = vars->p_pos_x - (MOVE_SPEED * cosf(vars->p_rotat * PI / 180));
-		y = vars->p_pos_y - (MOVE_SPEED * sinf(vars->p_rotat * PI / 180));
+		x = vars->p_pos_x - (MOVE_SPEED * cosf(vars->p_rotat * (PI / 180)));
+		y = vars->p_pos_y - (MOVE_SPEED * sinf(vars->p_rotat *( PI / 180)));
 		if ((vars->map[(int)y / vars->win_size][(int)x / vars->win_size]
 		&& vars->map[(int)y / vars->win_size][(int)x / vars->win_size] == '1'))
 			return ;

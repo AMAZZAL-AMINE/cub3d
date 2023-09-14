@@ -6,32 +6,33 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/13 12:27:27 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:15:21 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __unused float eng)
+//textures
+void rendring_textures(t_vars *vars, t_point p1, t_point p2, __unused float tall, __unused float eng)
 {
 	float x, y;
-	float x2, y2;
+	float y2;
 	float pos_tile_x, pos_tile_y;
-	float pos_txtr_x = 0.0, pos_txtr_y= 0.0;
+	float pos_txtr_x, pos_txtr_y;
 	t_pixle *img;
 
-	y = p1.y;
+  y = p1.y;
 	y2 =  0;
 	img = vars->img_pix;
 	if (tall > vars->dis.h / 2)
 		y2 = tall - (vars->dis.h / 2);
-	pos_tile_y = (vars->end_y - ((int)vars->end_y / vars->win_size) * vars->win_size);
-	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * vars->win_size);
-	if (pos_tile_x > 49.999) {
+	pos_tile_y = (vars->end_y - ((int)vars->end_y / vars->win_size) * (vars->win_size));
+	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * (vars->win_size));
+	if (pos_tile_x > (vars->win_size - 0.001)) {
 		img = vars->img_pix2;
 		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
 	}
-	else if (pos_tile_y > 49.999)
+	else if (pos_tile_y > (vars->win_size- 0.001))
 	{
 		img = vars->img_pix;
 		pos_txtr_x = ((pos_tile_x) * (img->w / vars->win_size));
@@ -50,15 +51,14 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
 		pos_tile_x = 0;
 	while (y < p2.y)
 	{
-		x2 = 0;
 		x = p1.x;
 		pos_txtr_y = ((y2) * ((img->h / 2) / tall));
+		// printf("x = %f y = %f\n", pos_txtr_x, pos_txtr_y);
 		while (x <= p2.x)
 		{
-			if (x < vars->dis.w 
-			&& pos_txtr_x <= img->w && pos_txtr_y < img->h)
-				my_mlx_pixel_put(vars, x, y, gety_pix_from_img(img, pos_txtr_x, pos_txtr_y));
-			x2++;
+			if (x < vars->dis.w
+			&& pos_txtr_x < img->w && pos_txtr_y < img->h)
+				my_mlx_pixel_put(vars, x, y, gety_pix_from_img(img , pos_txtr_x, pos_txtr_y));
 			x++;
 		}
 		y2++;
@@ -66,42 +66,14 @@ void draw_cub_3d(t_vars *vars, t_point p1, t_point p2, __unused float tall, __un
 	}
 }
 
-void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars)
-{
-	float draw_x;
-	float draw_y;
-	float steps;
-	float dst_x;
-	float dst_y;
-
-	dst_x = (p2.x - p1.x);
-	dst_y = (p2.y - p1.y);
-	draw_x = p1.x;
-	draw_y = p1.y;
-	if (fabs(dst_y) > fabs(dst_x))
-		steps = fabs(dst_y);
-	else
-		steps = fabs(dst_x);
-	dst_x = (dst_x / steps);
-	dst_y = (dst_y / steps);
-	int i = 0;
-	while (i <= steps)
-	{
-		if ( draw_x / ZOOM > 0 && draw_x / ZOOM < vars->dis.w && draw_y / ZOOM > 0 && draw_y / ZOOM < vars->dis.h)
-			my_mlx_pixel_put(vars, (int)draw_x / ZOOM, (int)draw_y / ZOOM, create_trgb(255, 255, 0));
-		draw_y += dst_y;
-		draw_x += dst_x;
-		i++;
-	}
-}
 
 void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 {
 	t_point p1, p2;
 	float tail, tall;
 
-	tail = vars->dis.w / (vars->fov * 10) + 1;
-	p1.x = rays * tail;
+	tail = 1;
+	p1.x = rays;
 	p2.x = p1.x + tail;
 
 	dis = dis * cosf((eng - vars->p_rotat) * (PI / 180));
@@ -112,35 +84,29 @@ void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 	p2.y = (vars->dis.h / 2) + tall;
 	if (p2.y >= vars->dis.h)
 		p2.y = vars->dis.h;
-	draw_cub_3d(vars, p1, p2, tall, eng);
+	rendring_textures(vars, p1, p2, tall, eng);
 }
 
 void rendring_rays(t_vars *vars)
 {
 	float eng;
-	int rays;
-	t_point p1;
-	t_point p2;
+	float rays;
 
 	eng = vars->p_rotat - (vars->fov / 2);
-		if (eng > 360)
-			eng -= 360;
-		else if (eng < 0)
-			eng += 360;
+	if (eng > 360)
+		eng -= 360;
+	else if (eng < 0)
+		eng += 360;
 	rays = 0;
-	while (rays < vars->dis.w / 2)
+	while (rays < vars->dis.w)
 	{
-		raycasting(vars, eng);
-		p1.x = vars->p_pos_x;
-		p1.y = vars->p_pos_y;
-		p2.x = vars->end_x;
-		p2.y = vars->end_y;
-		draw_walls_3d(vars, rays, eng, vars->rays_point.dis);
-		eng += 0.1;
+		eng += vars->fov / vars->dis.w;
 		if (eng > 360)
 			eng -= 360;
 		else if (eng < 0)
 			eng += 360;
+		raycasting(vars, eng);
+		draw_walls_3d(vars, rays, eng, vars->rays_point.dis);
 		rays++;
 	}
 }

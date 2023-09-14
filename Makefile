@@ -6,7 +6,7 @@
 #    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/09/13 12:14:17 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/09/14 10:27:53 by mamazzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS= -Wall -Wextra -Werror  -fsanitize=address -g -Ofast -O3
+CFLAGS= -Wall -Wextra -Werror # -fsanitize=address -g -Ofast -O3
 
 all: $(NAME)
 

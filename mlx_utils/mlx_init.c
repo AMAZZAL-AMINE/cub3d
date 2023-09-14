@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/13 12:34:15 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:54:18 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ int	count_biggest_line(char **map)
 void init_textrs(t_vars *vars)
 {
 	int __unused w,h,w2,h2,w3,h3,w4,h4;
-	char __unused *img1 = vars->pars_data->img->ea[1];
-	char __unused *img2 = vars->pars_data->img->no[1];
-	char __unused *img3 = vars->pars_data->img->so[1];
-	char __unused *img4 = vars->pars_data->img->we[1];
-	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, img1, &w, &h);
-	void __unused *gm2 = mlx_xpm_file_to_image(vars->mlx, img2, &w2, &h2);
-	void __unused *gm3 = mlx_xpm_file_to_image(vars->mlx, img3, &w3, &h3);
-	void __unused *gm4 = mlx_xpm_file_to_image(vars->mlx, img4, &w4, &h4);
+	char __unused *ea = vars->pars_data->img->ea[1];
+	char __unused *no = vars->pars_data->img->no[1];
+	char __unused *so = vars->pars_data->img->so[1];
+	char __unused *we = vars->pars_data->img->we[1];
+	void __unused *gm = mlx_xpm_file_to_image(vars->mlx, ea, &w, &h);
+	void __unused *gm2 = mlx_xpm_file_to_image(vars->mlx, no, &w2, &h2);
+	void __unused *gm3 = mlx_xpm_file_to_image(vars->mlx, so, &w3, &h3);
+	void __unused *gm4 = mlx_xpm_file_to_image(vars->mlx, we, &w4, &h4);
 	vars->img_pix = malloc(sizeof(t_pixle));
 	vars->img_pix1 = malloc(sizeof(t_pixle));
 	vars->img_pix2 = malloc(sizeof(t_pixle));
 	vars->img_pix3 = malloc(sizeof(t_pixle));
-		if (!gm || !gm2 || !gm3 || !gm4) { 
-		printf("IM STUCK DADY, YOU CANT`T FIX ME  %p💔\n", gm);
+	if (!gm || !gm2 || !gm3 || !gm4) { 
+		printf("IMAGE STUCK, GO FIX IT, ADDRESS => %p💔\n", gm);
 		exit(0);
 	}
 	vars->img_pix->w = w;
@@ -99,7 +99,7 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 {
 	vars->pars_data = data;
 	vars->map = data->map;
-	vars->win_size = 50;
+	vars->win_size = PIXEL_SIZE;
 	get_player_position(vars);
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();

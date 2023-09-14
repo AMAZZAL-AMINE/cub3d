@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:42:28 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/13 11:43:03 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:13:51 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int gety_pix_from_img(t_pixle *img_pix, int x, int y)
 	char *dst;
 	int offset;
 
-	offset = ((y * img_pix->line_length) +
-						(x * (img_pix->bits_per_pixel / 8)));
+	offset = (((int) y * img_pix->line_length) +
+						((int) x * (img_pix->bits_per_pixel / 8)));
 	dst = img_pix->addr + offset;
 	return *(unsigned int *)dst;
 }

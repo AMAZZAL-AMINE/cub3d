@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/13 12:32:44 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:14:02 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@
 # include <stdlib.h>
 # include <mlx.h>
 # include "./gnln/get_next_line.h"
-#include <math.h>
+# include <math.h>
 
-# define MOVE_SPEED 20
-# define ROTATE_SPEED 8
-#define RADIAN 0.0174533
-#define PI 3.14
-#define ZOOM 8
-#define FOV 60
-#define W_WIDTH 1560
-#define W_HEIGHT 1050
+# define	MOVE_SPEED 20
+# define	ROTATE_SPEED 8
+# define	RADIAN 0.0174533
+# define	PI 3.14
+# define	ZOOM 8
+# define	FOV 60
+# define	W_WIDTH 1560
+# define	W_HEIGHT 1050
+#define   PIXEL_SIZE 50
 
 
 /*PAESING STRUCTER*/

@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:20:44 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/13 11:21:11 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/13 22:51:46 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int check_is_wall(t_vars *vars, float x, float y)
 }
 void check_horizontal(t_vars *vars, float engl)
 {
-	//Horizontal
 	if (engl > 0 && engl < 180)
 	{
 		vars->ray.pos_y = ((int)vars->p_pos_y / vars->win_size) * vars->win_size + vars->win_size;
