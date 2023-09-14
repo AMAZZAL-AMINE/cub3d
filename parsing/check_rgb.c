@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:09:28 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/18 19:31:43 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:42:30 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_range(char **str, char *errmsg, t_check_rgb *data)
 	data->count = 0;
 	while (data->splited[data->count])
 	{
-		if (ft_atoi(data->splited[data->count]) > 225 \
+		if (ft_atoi(data->splited[data->count]) > 255 \
 			|| ft_atoi(data->splited[data->count]) < 0)
 		{
 			free_double(data->splited);

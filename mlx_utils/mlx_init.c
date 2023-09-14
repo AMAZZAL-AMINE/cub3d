@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 22:27:47 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/13 21:54:18 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:49:27 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ void	mlx_init_func(t_vars *vars, t_data *data)
 	get_player_position(vars);
 	vars->img = malloc(sizeof(t_pixle));
 	vars->mlx = mlx_init();
-	vars->dis.w = W_WIDTH;
-	vars->dis.h = W_HEIGHT;
+	
+	vars->dis.w = count_biggest_line(vars->map) * PIXEL_SIZE;
+	vars->dis.h = f_strlen(vars->map) * PIXEL_SIZE;
 	init_textrs(vars);
 	vars->fov = FOV;
 	vars->win = mlx_new_window(vars->mlx, vars->dis.w, \

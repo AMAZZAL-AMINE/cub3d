@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/14 17:33:41 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:53:41 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void rendring_textures(t_vars *vars, t_point p1, t_point p2, __unused float tall
 	{
 		x = p1.x;
 		pos_txtr_y = ((y2) * ((img->h / 2) / tall));
-		// printf("x = %f y = %f\n", pos_txtr_x, pos_txtr_y);
 		while (x <= p2.x)
 		{
 			if (x < vars->dis.w
