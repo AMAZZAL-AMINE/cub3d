@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/14 16:15:21 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/14 17:33:41 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void rendring_textures(t_vars *vars, t_point p1, t_point p2, __unused float tall
 	pos_tile_x = (vars->end_x - ((int)vars->end_x / vars->win_size) * (vars->win_size));
 	if (pos_tile_x > (vars->win_size - 0.001)) {
 		img = vars->img_pix2;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+		pos_txtr_x = ((pos_tile_y) * (img->w / vars->win_size));
 	}
 	else if (pos_tile_y > (vars->win_size- 0.001))
 	{
@@ -39,7 +39,7 @@ void rendring_textures(t_vars *vars, t_point p1, t_point p2, __unused float tall
 	}
 	else if (pos_tile_x < 0.001) {
 		img = vars->img_pix3;
-		pos_txtr_x = ((pos_tile_y) * (img->h / vars->win_size));
+		pos_txtr_x = ((pos_tile_y) * (img->w / vars->win_size));
 	}
 	else if (pos_tile_y < 0.001) {
 		img = vars->img_pix1;
@@ -72,12 +72,12 @@ void draw_walls_3d(t_vars *vars, int rays, __unused float eng, float dis)
 	t_point p1, p2;
 	float tail, tall;
 
-	tail = 1;
+	tail =  1;
 	p1.x = rays;
 	p2.x = p1.x + tail;
 
 	dis = dis * cosf((eng - vars->p_rotat) * (PI / 180));
-	tall = (vars->dis.h * vars->win_size) / dis;
+	tall = ((vars->dis.h * vars->win_size) / dis) / 2; //modified here a bro
 	p1.y = (vars->dis.h / 2) - tall;
 	if (p1.y < 0)
 		p1.y = 0;

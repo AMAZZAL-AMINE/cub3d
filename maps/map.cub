@@ -1,7 +1,7 @@
-WE ./txtr/hacker.xpm
-EA ./txtr/kslik.xpm
-NO ./txtr/miroka.xpm
-SO ./txtr/mlagrini.xpm
+WE ./txtr/wall_1.xpm
+EA ./txtr/wall_2.xpm
+NO ./txtr/wall_3.xpm
+SO ./txtr/wall_4.xpm
 
 
 
