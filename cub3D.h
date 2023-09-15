@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:27:54 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/14 18:45:03 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:08:53 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,16 @@
 # include "./gnln/get_next_line.h"
 # include <math.h>
 
-# define	MOVE_SPEED 20
-# define	ROTATE_SPEED 8
-# define	RADIAN 0.0174533
-# define	PI 3.14
-# define	ZOOM 8
-# define	FOV 60
-# define	W_WIDTH 1560
-# define	W_HEIGHT 1050
-#define   PIXEL_SIZE 50
+# define MOVE_SPEED 20
+# define ROTATE_SPEED 8
+# define RADIAN 0.0174533
+# define PI 3.14
+# define ZOOM 8
+# define FOV 60
+# define W_WIDTH 1560
+# define W_HEIGHT 1050
+# define PIXEL_SIZE 50
 
-
-/*PAESING STRUCTER*/
 typedef struct t_check_rgb
 {
 	char	**splited;
@@ -72,9 +70,7 @@ typedef struct t_pars
 	int		stoped;
 	int		index;
 }	t_pars;
-/*END PARSING STRUCTER*/
 
-/*MLX UTILIS STRUCTER*/
 typedef struct s_img
 {
 	void	*img;
@@ -82,8 +78,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	float w;
-	float h;
+	float	w;
+	float	h;
 }	t_pixle;
 
 typedef struct s_display_win
@@ -96,69 +92,65 @@ typedef struct s_direction
 {
 	float	x;
 	float	y;
-} t_dir;
+}	t_dir;
 
 typedef struct t_point
 {
 	float	x;
 	float	y;
-} t_point;
+}	t_point;
 
 typedef struct t_rays_point
 {
-	float x;
-	float y;
-	float dis;
-} t_rays_point;
+	float	x;
+	float	y;
+	float	dis;
+}	t_rays_point;
 
 typedef struct t_rays
 {
-	float pos_x;
-	float pos_y;
-	float step_x;
-	float step_y;
-	int count;
-} t_ray;
+	float	pos_x;
+	float	pos_y;
+	float	step_x;
+	float	step_y;
+	int		count;
+}	t_ray;
 
 typedef struct s_vars
 {
-	float	p_pos_x;
-	float	p_pos_y;
-	float p_rotat;
-	char	**map;
-	void	*mlx;
-	void	*win;
-	t_pixle	*img;
-	t_pixle	*img_pix;
-	t_pixle	*img_pix1;
-	t_pixle	*img_pix2;
-	t_pixle	*img_pix3;
-	t_rays_point rays_point;
-	t_ray	ray;
-	t_dis	dis;
-	t_point p1;
-	t_data  *pars_data;
-	char	*add;
-	int		key;
-	int	win_size;
-	float fov;
-	float	end_h_x;
-	float	end_h_y;
-	float	end_v_x;
-	float	end_v_y;
-	float	end_x;
-	float	end_y;
-	t_dir dir;
+	float				p_pos_x;
+	float				p_pos_y;
+	float				p_rotat;
+	char				**map;
+	void				*mlx;
+	void				*win;
+	t_pixle				*img;
+	t_pixle				*img_pix;
+	t_pixle				*img_pix1;
+	t_pixle				*img_pix2;
+	t_pixle				*img_pix3;
+	t_rays_point		rays_point;
+	t_ray				ray;
+	t_dis				dis;
+	t_point				p1;
+	t_data				*pars_data;
+	char				*add;
+	int					key;
+	int					win_size;
+	float				fov;
+	float				end_h_x;
+	float				end_h_y;
+	float				end_v_x;
+	float				end_v_y;
+	float				end_x;
+	float				end_y;
+	t_dir				dir;
 }				t_vars;
-/*END MLX UTILIS STRUCTER*/
-
-/* ############### cub3D.c ############### */
-/* ############### ft_split.c ############### */
-void check_horizontal(t_vars *vars, float engl);
-void check_vertical(t_vars *vars, float engl);
-int check_is_wall(t_vars *vars, float x, float y);
-int	count_biggest_line(char **map);
-int	create_trgb(int r, int g, int b);
+void	check_horizontal(t_vars *vars, float engl);
+void	check_vertical(t_vars *vars, float engl);
+int		check_is_wall(t_vars *vars, float x, float y);
+int		count_biggest_line(char **map);
+int		create_trgb(int r, int g, int b);
 char	**ft_split(char const *s, char c);
 char	*ft_strndup(char const *str, size_t max);
 int		strlen_2d_array(char **array);
@@ -168,7 +160,6 @@ void	free_double(char **array);
 int		ft_isdigit(int nbr);
 void	check_valid_map(t_data *data);
 int		str_cmp(char *s1, char *s2);
-// PARSING 
 int		parsing_map(t_data *data, char **map);
 void	check_var_name(char **str, char *errmsg, t_check_rgb *data, char c);
 void	err(char **str, char *errstr);
@@ -183,35 +174,31 @@ void	split_map_line_ceil(char *line, t_data *data, t_pars *pars);
 int		is_it_rgb(char c1, t_pars *pars, char **map);
 char	**duplcate_map(char **oldmap);
 void	print_map(t_data *data, char **map);
-void ft_move(t_vars *vars);
+void	ft_move(t_vars *vars);
 void	draw_floor(t_vars *vars);
 void	draw_ceil(t_vars *vars);
-// check MAP
 int		check_south(char **sorth);
 void	check_nswe(t_data *data);
 int		error_fd_not_found(char *msg);
 int		error_map(char *msg);
 void	check_rgb(t_data *data);
 void	check_content_of_map(char **map);
-
-/* ############### draw_map.c ############### */
 void	draw(t_vars *vars, int color);
 void	put_pxl(t_vars *vars);
-
-/* ############### libft_utils.c ############### */
 int		ft_count(char **map);
 int		f_strlen(char **map);
-
-/* ############### hook.c ############### */
 int		ft_close(void);
 int		key_hook(int keycode, t_vars *vars);
 void	ft_move(t_vars *vars);
 void	mlx_init_func(t_vars *vars, t_data *data);
-
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	put_pxl_mini_map(t_vars *vars);
+void	raycasting(t_vars *f, float engl);
+void	draw_player_line_ray(t_point p1, t_point p2, t_vars *vars);
+int		gety_pix_from_img(t_pixle *img_pix, int x, int y);
+void	rendring_rays(t_vars *vars);
+void	rendring_textures(t_vars *vars, t_point p1, \
+	t_point p2, float tall);
+void	init_textures(t_vars *vars);
 
-void raycasting(t_vars *, float);
-void draw_player_line_ray(t_point p1, t_point p2, t_vars *vars);
-int gety_pix_from_img(t_pixle *img_pix, int x, int y);
 #endif

@@ -6,7 +6,7 @@
 #    By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 12:13:49 by mamazzal          #+#    #+#              #
-#    Updated: 2023/09/14 10:27:53 by mamazzal         ###   ########.fr        #
+#    Updated: 2023/09/15 20:53:15 by mamazzal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC = cub3D.c ./libft_utils/ft_split.c ./parsing/parsing.c read_map.c \
 			./libft_utils/str_cmp.c ./mlx_utils/draw_map.c ./libft_utils/libft_utils.c ./mlx_utils/hook.c \
 			./mlx_utils/mlx_init.c dupl_map.c ./parsing/check_content_of_map.c ./mlx_utils/moves.c create_rgb.c \
 			./mlx_utils/draw_ceil_floor.c draw_mini_map.c errors.c ./mlx_utils/check_vertical_and_herozintal.c \
-			./mlx_utils/draw_pixel.c ./mlx_utils/raycasting.c
+			./mlx_utils/draw_pixel.c ./mlx_utils/raycasting.c ./mlx_utils/rendring_rays.c \
+			./mlx_utils/init_textures_value.c
 
 OBJ = $(SRC:.c=.o)
 
