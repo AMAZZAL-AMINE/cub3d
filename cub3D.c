@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 13:32:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/15 21:30:24 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:47:36 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@ void	set_rotation(t_vars *vars, char **map)
 		vars->p_rotat = 270;
 }
 
+//////// TODO ///////////////
+/* *CHECK FILE TYPE .CUB AND HANDLE IT  */
+
+void	check_file_name_type(char *file)
+{
+	int	count;
+
+	count = ft_strlen(file);
+	if (count - 4 >= 0 && file[count - 4] == '.' \
+		&& file[count - 3] == 'c' \
+		&& file[count - 2] == 'u' \
+		&& file[count - 1] == 'b')
+		return ;
+	else
+	{
+		write(1, "Error\nFile type must end with (.cub)\n", 38);
+		exit(1);
+	}
+}
+
 int	main(int __unused argc, char __unused **argv)
 {
 	char	**map;
@@ -73,6 +93,7 @@ int	main(int __unused argc, char __unused **argv)
 
 	if (argc != 2)
 		error_map("Error\nARGMENTS : [PROTGRAM_NAME] [MAP_FILE]");
+	check_file_name_type(argv[1]);
 	map = read_map(argv[1]);
 	data = malloc(sizeof(t_data));
 	last_index = parsing_map(data, map);

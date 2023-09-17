@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:20:46 by rouali            #+#    #+#             */
-/*   Updated: 2023/09/15 22:56:06 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:50:43 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,4 @@ void	put_pxl(t_vars *vars)
 	vars->dir.x = 0;
 	vars->dir.y = 0;
 	rendring_rays(vars);
-	// put_pxl_mini_map(vars);
 }

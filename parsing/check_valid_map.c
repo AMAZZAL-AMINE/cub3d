@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:53:34 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/08/20 20:03:01 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/16 22:46:36 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	check_first_and_last_line(char *line)
 			|| line[count] == 'W' \
 			|| line[count] == '0'))
 			return (1);
+		else if (!line[count])
+			break ;
 		count++;
 	}
 	return (0);
@@ -47,8 +49,9 @@ int	check_unclosed_wall(char **map, int count, int i)
 		return (1);
 	else if (map[count][i + 1] == ' ' || !map[count][i + 1])
 		return (1);
-	else if (count - 1 >= 0 && (map[count - 1][i] == ' ' \
-		|| !map[count - 1][i]))
+	else if ((count - 1 >= 0 && ft_strlen(map[count - 1]) > 0 \
+		&& (map[count - 1][i] == ' ' \
+		|| !map[count - 1][i])) || ft_strlen(map[count - 1]) == 0)
 		return (1);
 	else if (map[count + 1] && (map[count + 1][i] == ' ' \
 		|| !map[count + 1][i]))

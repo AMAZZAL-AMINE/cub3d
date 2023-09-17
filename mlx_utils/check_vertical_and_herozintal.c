@@ -6,7 +6,7 @@
 /*   By: mamazzal <mamazzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:20:44 by mamazzal          #+#    #+#             */
-/*   Updated: 2023/09/15 19:53:32 by mamazzal         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:04:35 by mamazzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	check_is_wall(t_vars *vars, float x, float y)
 {
-	if (y / vars->win_size <= f_strlen(vars->map) && y / vars->win_size >= 0 
+	if (y / vars->win_size <= f_strlen(vars->map) && y / vars->win_size >= 0
 		&& x / vars->win_size <= ft_strlen(vars->map[(int)y / vars->win_size]) \
 		&& x / vars->win_size >= 0
-		&& vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] != 0 
+		&& vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] != 0
 		&& (vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] \
 			== '1'
 		|| vars->map[(int)(y / vars->win_size)][(int)(x / vars->win_size)] \
